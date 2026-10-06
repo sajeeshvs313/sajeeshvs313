@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website Poster 4:5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Noto+Sans+Malayalam:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1630; --bg2:#12224a; --accent:#ff7a1a; --accent2:#ffc247;
+    --green:#25d366; --ink:#ffffff; --muted:#b9c4e0; --card:rgba(255,255,255,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1350px;background:#000}
+  .poster{
+    width:1080px;height:1350px;position:relative;overflow:hidden;
+    font-family:'Poppins','Noto Sans Malayalam',sans-serif;color:var(--ink);
+    background:
+      radial-gradient(900px 600px at 100% 0%, rgba(255,122,26,.28), transparent 60%),
+      radial-gradient(800px 700px at 0% 100%, rgba(37,211,102,.16), transparent 60%),
+      linear-gradient(160deg,var(--bg2),var(--bg) 55%);
+    padding:48px 64px;
+  }
+  .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:28px 28px;opacity:.6}
+  .z{position:relative;z-index:2}
+
+  .top{display:flex;justify-content:space-between;align-items:center}
+  .brand{font-weight:800;font-size:26px;letter-spacing:.5px}
+  .brand span{color:var(--accent)}
+  .tag{background:var(--accent);color:#1a1000;font-weight:800;font-size:20px;padding:10px 22px;border-radius:40px;letter-spacing:.5px}
+
+  h1{font-size:76px;line-height:.98;font-weight:900;margin-top:28px;letter-spacing:-2px}
+  h1 em{font-style:normal;color:var(--accent2)}
+  h1 .u{display:inline-block;position:relative}
+  h1 .u:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:14px;background:var(--accent);opacity:.9;z-index:-1;border-radius:6px}
+  .ml{font-family:'Noto Sans Malayalam','Poppins',sans-serif;font-weight:700;font-size:30px;color:var(--accent2);margin-top:14px}
+  .sub{font-size:23px;color:var(--muted);margin-top:10px;line-height:1.45;max-width:760px;font-weight:500}
+
+  /* mockups */
+  .mock{position:absolute;right:44px;top:110px;width:300px;height:360px}
+  .browser{position:absolute;right:0;top:20px;width:290px;height:215px;background:#fff;border-radius:16px;box-shadow:0 30px 60px rgba(0,0,0,.5);overflow:hidden;transform:rotate(3deg)}
+  .bar{height:28px;background:#e9edf5;display:flex;align-items:center;gap:6px;padding:0 12px}
+  .bar i{width:9px;height:9px;border-radius:50%;background:#c3cadb;display:block}
+  .bar i:nth-child(1){background:#ff5f56}.bar i:nth-child(2){background:#ffbd2e}.bar i:nth-child(3){background:#27c93f}
+  .hero{height:105px;background:linear-gradient(120deg,#ff7a1a,#ffc247);padding:16px 16px;color:#1a1000}
+  .hero b{display:block;font-size:19px;font-weight:800;line-height:1.1}
+  .hero small{font-size:11px;font-weight:600;opacity:.8}
+  .hero .btn{margin-top:8px;display:inline-block;background:#0b1630;color:#fff;font-size:10px;font-weight:700;padding:5px 12px;border-radius:20px}
+  .rows{padding:10px 14px;display:flex;gap:8px}
+  .rows div{flex:1;height:44px;border-radius:8px;background:#eef1f8}
+  .phone{position:absolute;left:0;top:105px;width:128px;height:245px;background:#0b1630;border:5px solid #1f2f5c;border-radius:26px;box-shadow:0 30px 60px rgba(0,0,0,.55);transform:rotate(-6deg);overflow:hidden}
+  .phone .scr{height:100%;background:#fff;padding:10px 8px}
+  .phone .h{height:62px;border-radius:10px;background:linear-gradient(120deg,#ff7a1a,#ffc247)}
+  .phone .l{height:8px;border-radius:4px;background:#dfe5f2;margin-top:8px}
+  .phone .l.s{width:60%}
+  .phone .wa{margin-top:14px;height:26px;border-radius:14px;background:var(--green);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+  /* chips */
+  .biz{margin-top:26px}
+  .label{font-size:19px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .chips span{background:var(--card);border:1.5px solid rgba(255,255,255,.18);padding:9px 18px;border-radius:40px;font-size:20px;font-weight:600}
+
+  /* features */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+  .f{background:var(--card);border:1.5px solid rgba(255,255,255,.12);border-radius:22px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start}
+  .ic{flex:0 0 54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:28px}
+  .f b{display:block;font-size:23px;font-weight:700;line-height:1.15}
+  .f p{font-size:17px;color:var(--muted);margin-top:4px;line-height:1.35;font-weight:500}
+
+  /* steps + price */
+  .row2{display:flex;gap:22px;margin-top:22px;align-items:stretch}
+  .steps{flex:1.25;background:var(--card);border:1.5px solid rgba(255,255,255,.12);border-radius:22px;padding:22px 26px}
+  .steps h3{font-size:19px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+  .st{display:flex;align-items:center;gap:14px;margin-top:8px;font-size:20px;font-weight:600}
+  .st i{font-style:normal;flex:0 0 36px;height:36px;border-radius:50%;background:var(--accent);color:#1a1000;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:19px}
+  .price{flex:1;border-radius:22px;background:linear-gradient(150deg,var(--accent),#ff4d6d);padding:24px 26px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 20px 40px rgba(255,90,40,.35)}
+  .price small{font-size:18px;font-weight:700;opacity:.95;letter-spacing:1px}
+  .price .big{font-size:54px;font-weight:900;line-height:1;margin:6px 0}
+  .price .big sup{font-size:30px;vertical-align:top;position:relative;top:6px}
+  .price .n{font-size:17px;font-weight:600;line-height:1.35}
+
+  /* CTA */
+  .cta{position:absolute;left:0;right:0;bottom:0;height:150px;background:#fff;color:#0b1630;padding:0 64px;display:flex;align-items:center;justify-content:space-between;z-index:3}
+  .cta h2{font-size:34px;white-space:nowrap;font-weight:900;line-height:1.05}
+  .cta h2 em{font-style:normal;color:var(--accent)}
+  .cta .ml2{font-family:'Noto Sans Malayalam',sans-serif;font-weight:700;font-size:21px;margin-top:8px;color:#4a587d}
+  .wa{display:flex;align-items:center;gap:14px;background:var(--green);color:#fff;padding:16px 30px;border-radius:60px;font-weight:800;font-size:28px;white-space:nowrap;box-shadow:0 14px 30px rgba(37,211,102,.4)}
+  .wa .g{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--green);display:flex;align-items:center;justify-content:center;font-size:26px}
+  .contact{font-size:19px;font-weight:600;color:#4a587d;margin-top:8px;text-align:center}
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="dots"></div>
+
+  <div class="z top">
+    <div class="brand">YOUR<span>BRAND</span> DIGITAL</div>
+    <div class="tag">LIMITED OFFER</div>
+  </div>
+
+  <div class="z">
+    <h1>Get Your<br>Business <span class="u"><em>Online</em></span><br>in 48 Hours</h1>
+    <div class="ml">നിങ്ങളുടെ ബിസിനസ് ഇനി ഗൂഗിളിൽ!</div>
+    <div class="sub">Professional website + lead page that brings you<br>calls, WhatsApp enquiries &amp; walk-ins.</div>
+  </div>
+
+  <div class="mock z">
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="hero"><b>Fresh Look.<br>Real Customers.</b><small>Open daily · 9 AM – 8 PM</small><br><span class="btn">Book Now</span></div>
+      <div class="rows"><div></div><div></div><div></div></div>
+    </div>
+    <div class="phone"><div class="scr"><div class="h"></div><div class="l"></div><div class="l s"></div><div class="l"></div><div class="wa">WhatsApp</div></div></div>
+  </div>
+
+  <div class="z biz">
+    <div class="label">Perfect for</div>
+    <div class="chips">
+      <span>📚 Tuition Centres</span><span>🏥 Clinics</span><span>💪 Gyms</span>
+      <span>🍽️ Restaurants</span><span>💅 Beauty Parlours</span><span>🏡 Homestays</span>
+    </div>
+  </div>
+
+  <div class="z grid">
+    <div class="f"><div class="ic">💬</div><div><b>WhatsApp Button</b><p>Customers message you in one tap</p></div></div>
+    <div class="f"><div class="ic">📍</div><div><b>Google Map</b><p>Easy to find, easy to visit</p></div></div>
+    <div class="f"><div class="ic">🎁</div><div><b>Offer &amp; Enquiry Form</b><p>Capture leads 24 × 7</p></div></div>
+    <div class="f"><div class="ic">📱</div><div><b>Mobile Friendly</b><p>Looks perfect on every phone</p></div></div>
+  </div>
+
+  <div class="z row2">
+    <div class="steps">
+      <h3>How it works</h3>
+      <div class="st"><i>1</i>Share your business details</div>
+      <div class="st"><i>2</i>We design &amp; build your site</div>
+      <div class="st"><i>3</i>Go live &amp; get enquiries</div>
+    </div>
+    <div class="price">
+      <small>WEBSITES FROM</small>
+      <div class="big"><sup>₹</sup>5,000</div>
+      <div class="n">+ Monthly care plan<br>from ₹1,000 / month</div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h2>Ready to get <em>more customers?</em></h2>
+      <div class="ml2">ഇന്ന് തന്നെ സൗജന്യ ഡെമോ നേടൂ</div>
+    </div>
+    <div>
+      <div class="wa"><span class="g">✆</span>+91 XXXXX XXXXX</div>
+      <div class="contact">yourwebsite.com · @yourinstagram</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
