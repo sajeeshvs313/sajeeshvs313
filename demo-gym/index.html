@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitZone Gym | Strength, Cardio &amp; Personal Training</title>
+<meta name="description" content="FitZone Gym: modern equipment, expert trainers and flexible plans. Join today and get a free trial session.">
+<meta name="theme-color" content="#16171a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121316; --bg2:#1a1c21; --card:#20232a; --line:#2d313a;
+    --text:#f4f5f7; --muted:#a9afbb; --accent:#ff4d2e; --accent2:#ff8a3d; --wa:#25d366;
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img,svg{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+  section{padding:76px 0}
+  h1,h2,h3,.display{font-family:'Oswald','Poppins',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:1.08}
+  h2{font-size:clamp(30px,5vw,46px)}
+  .eyebrow{color:var(--accent);font-weight:700;letter-spacing:3px;font-size:13px;text-transform:uppercase}
+  .lead{color:var(--muted);max-width:620px;margin-top:12px}
+  .head{margin-bottom:38px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:50px;font-weight:700;font-size:15px;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 28px rgba(255,77,46,.35)}
+  .btn-o{border:2px solid var(--line);color:var(--text);background:transparent}
+  .btn-w{background:var(--wa);color:#fff;box-shadow:0 12px 28px rgba(37,211,102,.3)}
+
+  /* nav */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(18,19,22,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:'Oswald';font-weight:700;font-size:26px;letter-spacing:1px}
+  .logo span{color:var(--accent)}
+  nav ul{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:600;color:var(--muted)}
+  nav a:hover{color:#fff}
+  .nav .btn{padding:10px 20px;font-size:13px}
+
+  /* hero */
+  .hero{padding:150px 0 90px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(700px 480px at 85% 10%,rgba(255,77,46,.28),transparent 60%),
+      radial-gradient(600px 500px at 0% 100%,rgba(255,138,61,.14),transparent 60%),
+      var(--bg)}
+  .hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1.5px,transparent 1.5px);background-size:30px 30px;mask-image:linear-gradient(180deg,#000,transparent 75%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 75%)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(255,77,46,.12);border:1px solid rgba(255,77,46,.4);color:#ffb09f;padding:7px 16px;border-radius:40px;font-size:13px;font-weight:600}
+  h1{font-size:clamp(44px,8vw,86px);margin:20px 0 18px}
+  h1 em{font-style:normal;color:var(--accent)}
+  .hero p{color:var(--muted);font-size:18px;max-width:520px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .art{position:relative;aspect-ratio:1;max-width:420px;margin-inline:auto;width:100%}
+  .art .ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 200deg,var(--accent),var(--accent2),#2a2d35 60%,var(--accent));padding:10px}
+  .art .ring div{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2d313b,#15161a);display:grid;place-items:center}
+  .art svg{width:52%;filter:drop-shadow(0 12px 24px rgba(255,77,46,.5))}
+  .chip{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 16px;font-weight:700;font-size:14px;box-shadow:0 14px 30px rgba(0,0,0,.4)}
+  .chip small{display:block;color:var(--muted);font-weight:500;font-size:11px}
+  .c1{left:-6px;top:12%}.c2{right:-6px;bottom:14%}
+
+  /* stats */
+  .stats{padding:0;margin-top:-34px;position:relative;z-index:2}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .stat{padding:26px 16px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border:0}
+  .stat b{font-family:'Oswald';font-size:38px;color:var(--accent);display:block;line-height:1}
+  .stat span{color:var(--muted);font-size:13px;font-weight:500}
+
+  /* programs */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .prog{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;transition:.2s}
+  .prog:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .ico{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:28px;margin-bottom:16px}
+  .prog h3{font-size:22px;margin-bottom:6px}
+  .prog p{color:var(--muted);font-size:14.5px}
+
+  /* plans */
+  #plans{background:var(--bg2)}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;position:relative;display:flex;flex-direction:column}
+  .plan.pop{border:2px solid var(--accent);background:linear-gradient(180deg,#2a2220,var(--card));transform:scale(1.03)}
+  .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:800;padding:5px 16px;border-radius:30px;letter-spacing:1px}
+  .plan h3{font-size:24px}
+  .price{font-family:'Oswald';font-size:50px;margin:12px 0 4px;line-height:1}
+  .price sup{font-size:22px;vertical-align:top;position:relative;top:6px;margin-right:2px}
+  .price small{font-family:'Poppins';font-size:14px;color:var(--muted);font-weight:500}
+  .plan ul{list-style:none;margin:20px 0 26px;display:grid;gap:10px;font-size:15px;color:#d9dce3;flex:1}
+  .plan li:before{content:"✓";color:var(--accent);font-weight:800;margin-right:10px}
+  .plan .btn{width:100%}
+
+  /* trainers */
+  .tr{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .tr .ph{height:210px;display:grid;place-items:center;font-size:76px;background:
+     radial-gradient(circle at 50% 20%,rgba(255,138,61,.4),transparent 65%),linear-gradient(160deg,#2c2f37,#17181c)}
+  .tr .in{padding:20px 22px}
+  .tr h3{font-size:22px}
+  .tr .r{color:var(--accent);font-weight:600;font-size:14px}
+  .tr p{color:var(--muted);font-size:14px;margin-top:6px}
+
+  /* offer */
+  .offer{padding:0}
+  .offer .box{background:linear-gradient(120deg,var(--accent),#c4301a);border-radius:26px;padding:46px;display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 24px 60px rgba(255,77,46,.3)}
+  .offer h2{font-size:clamp(28px,4.5vw,42px)}
+  .offer p{opacity:.92;margin-top:6px}
+  .offer .btn{background:#fff;color:#c4301a}
+
+  /* reviews */
+  .rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+  .stars{color:#ffc247;letter-spacing:3px}
+  .rev p{margin:10px 0 16px;color:#d9dce3;font-size:15px}
+  .who{display:flex;gap:12px;align-items:center;font-size:14px}
+  .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:800}
+  .who small{display:block;color:var(--muted)}
+
+  /* timings + contact */
+  #contact{background:var(--bg2)}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .info{display:grid;gap:16px;margin:20px 0}
+  .info div{display:flex;gap:14px;align-items:flex-start}
+  .info i{font-style:normal;width:42px;height:42px;border-radius:12px;background:rgba(255,77,46,.14);display:grid;place-items:center;flex:0 0 42px}
+  .info b{display:block;font-size:15px}
+  .info span{color:var(--muted);font-size:14px}
+  iframe{width:100%;height:300px;border:0;border-radius:14px;filter:grayscale(.3) contrast(1.05)}
+  form{display:grid;gap:14px;margin-top:18px}
+  label{font-size:13px;font-weight:600;color:var(--muted)}
+  input,select,textarea{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--text);font:inherit;font-size:15px;margin-top:6px}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent)}
+  textarea{min-height:90px;resize:vertical}
+  .note{font-size:12.5px;color:var(--muted)}
+
+  footer{padding:30px 0 90px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a{color:var(--accent2);font-weight:600}
+
+  .fab{position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 28px rgba(37,211,102,.5)}
+  .fab svg{width:32px;height:32px;fill:#fff}
+
+  @media(max-width:880px){
+    nav ul{display:none}
+    .hero .wrap{grid-template-columns:1fr}
+    .art{max-width:300px;order:-1}
+    .grid3{grid-template-columns:1fr}
+    .plan.pop{transform:none}
+    .stats .wrap{grid-template-columns:repeat(2,1fr)}
+    .stat b{font-size:30px;white-space:nowrap}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .cgrid{grid-template-columns:1fr}
+    section{padding:58px 0}
+    .hero{padding-top:110px}
+    .offer .box{padding:32px 26px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" data-brand>FIT<span>ZONE</span></a>
+    <nav><ul>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#plans">Plans</a></li>
+      <li><a href="#trainers">Trainers</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <a class="btn btn-p" href="#contact">Free Trial</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge">🔥 New batches starting this month</span>
+        <h1>Build Your <em>Strongest</em> Self</h1>
+        <p>Modern equipment, certified trainers and plans that fit your goals. Whether you want to lose weight, build muscle or stay active, we'll get you there.</p>
+        <div class="cta">
+          <a class="btn btn-p" href="#contact">Book Free Trial</a>
+          <a class="btn btn-w" data-wa="Hi, I want to know more about the gym memberships." href="#">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg>
+            WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="art">
+        <div class="ring"><div>
+          <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26v12M12 20v24M52 20v24M58 26v12M12 32h40"/></svg>
+        </div></div>
+        <div class="chip c1">⭐ 4.9 Rating<small>from 300+ members</small></div>
+        <div class="chip c2">💪 Certified Trainers<small>1-to-1 guidance</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat"><b>500+</b><span>Active Members</span></div>
+      <div class="stat"><b>10+</b><span>Expert Trainers</span></div>
+      <div class="stat"><b>50+</b><span>Machines &amp; Equipment</span></div>
+      <div class="stat"><b>6 AM–10 PM</b><span>Open Every Day</span></div>
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">What we offer</div><h2>Programs for every goal</h2><p class="lead">Pick a program that matches your fitness level. Our trainers will guide you at every step.</p></div>
+      <div class="grid3">
+        <div class="prog"><div class="ico">🏋️</div><h3>Strength Training</h3><p>Free weights and machines for muscle gain and a stronger body.</p></div>
+        <div class="prog"><div class="ico">🏃</div><h3>Cardio Zone</h3><p>Treadmills, cross-trainers and cycles to boost stamina and burn fat.</p></div>
+        <div class="prog"><div class="ico">🥊</div><h3>HIIT &amp; Functional</h3><p>High-energy group sessions that burn calories fast.</p></div>
+        <div class="prog"><div class="ico">🧘</div><h3>Yoga &amp; Mobility</h3><p>Improve flexibility, posture and recovery, and reduce stress.</p></div>
+        <div class="prog"><div class="ico">🎯</div><h3>Personal Training</h3><p>One-to-one coaching with a custom workout and progress tracking.</p></div>
+        <div class="prog"><div class="ico">🥗</div><h3>Diet Guidance</h3><p>Simple, practical meal plans that fit your lifestyle and budget.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="wrap">
+      <div class="head" style="text-align:center"><div class="eyebrow">Membership</div><h2>Simple, honest pricing</h2><p class="lead" style="margin-inline:auto">No hidden charges. Sample prices shown, customise for your gym.</p></div>
+      <div class="grid3">
+        <div class="plan"><h3>Monthly</h3><div class="price"><sup>₹</sup>1,500<small> /month</small></div>
+          <ul><li>Full gym access</li><li>Cardio &amp; strength zones</li><li>Locker facility</li><li>Basic workout plan</li></ul>
+          <a class="btn btn-o" data-wa="Hi, I'm interested in the Monthly plan." href="#">Choose Monthly</a></div>
+        <div class="plan pop"><span class="tag">MOST POPULAR</span><h3>Quarterly</h3><div class="price"><sup>₹</sup>3,999<small> /3 months</small></div>
+          <ul><li>Everything in Monthly</li><li>Group HIIT classes</li><li>Diet guidance</li><li>Monthly body assessment</li></ul>
+          <a class="btn btn-p" data-wa="Hi, I'm interested in the Quarterly plan." href="#">Choose Quarterly</a></div>
+        <div class="plan"><h3>Yearly</h3><div class="price"><sup>₹</sup>11,999<small> /year</small></div>
+          <ul><li>Everything in Quarterly</li><li>2 free personal sessions</li><li>Priority slot booking</li><li>Free gym t-shirt</li></ul>
+          <a class="btn btn-o" data-wa="Hi, I'm interested in the Yearly plan." href="#">Choose Yearly</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trainers">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">Meet the team</div><h2>Train with the best</h2></div>
+      <div class="grid3">
+        <div class="tr"><div class="ph">👨‍🦱</div><div class="in"><h3>Arjun K.</h3><div class="r">Head Trainer · Strength</div><p>8 years of experience in bodybuilding and strength conditioning.</p></div></div>
+        <div class="tr"><div class="ph">👩</div><div class="in"><h3>Meera S.</h3><div class="r">Fitness &amp; Yoga Coach</div><p>Certified yoga instructor and weight-loss specialist.</p></div></div>
+        <div class="tr"><div class="ph">🧔</div><div class="in"><h3>Rahul M.</h3><div class="r">HIIT &amp; Functional</div><p>Expert in fat loss, sports conditioning and group classes.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div class="wrap"><div class="box">
+      <div><h2>Your first session is on us</h2><p>Book a free trial and a fitness assessment. No payment, no pressure.</p></div>
+      <a class="btn" href="#contact">Claim Free Trial</a>
+    </div></div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">Member stories</div><h2>Real people, real results</h2></div>
+      <div class="grid3">
+        <div class="rev"><div class="stars">★★★★★</div><p>"Lost 9 kg in 4 months. The trainers really care and the plan was easy to follow."</p><div class="who"><div class="av">A</div><div>Anoop P.<small>Member for 1 year</small></div></div></div>
+        <div class="rev"><div class="stars">★★★★★</div><p>"Clean, spacious and never too crowded. Love the morning HIIT batch!"</p><div class="who"><div class="av">S</div><div>Sneha R.<small>Member for 8 months</small></div></div></div>
+        <div class="rev"><div class="stars">★★★★★</div><p>"Best value gym in the area. Personal training helped me gain strength fast."</p><div class="who"><div class="av">V</div><div>Vishnu M.<small>Member for 2 years</small></div></div></div>
+      </div>
+      <p class="note" style="margin-top:14px">*Sample reviews for demo. Replace with real member reviews.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">Get in touch</div><h2>Visit us or book a trial</h2></div>
+      <div class="cgrid">
+        <div class="panel">
+          <div class="info">
+            <div><i>📍</i><p><b>Address</b><span data-addr></span></p></div>
+            <div><i>📞</i><p><b>Call / WhatsApp</b><span><a data-tel href="#"></a></span></p></div>
+            <div><i>🕒</i><p><b>Timings</b><span>Mon–Sat: 6 AM – 10 PM · Sun: 7 AM – 12 PM</span></p></div>
+          </div>
+          <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Gym location map"></iframe>
+        </div>
+        <div class="panel">
+          <h3 style="font-size:26px">Book your free trial</h3>
+          <p class="note" style="margin-top:6px">Fill the form and we'll message you on WhatsApp.</p>
+          <form id="enq">
+            <div><label>Your name<input name="name" required placeholder="Full name"></label></div>
+            <div><label>Phone number<input name="phone" required inputmode="tel" placeholder="10-digit mobile number"></label></div>
+            <div><label>Your goal
+              <select name="goal"><option>Weight loss</option><option>Muscle gain</option><option>General fitness</option><option>Personal training</option><option>Yoga</option></select></label></div>
+            <div><label>Message (optional)<textarea name="msg" placeholder="Preferred time, questions..."></textarea></label></div>
+            <button class="btn btn-w" type="submit">Send on WhatsApp</button>
+            <p class="note">Your details are only used to contact you about your trial.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> <span data-brand-name></span>. All rights reserved.</span>
+    <span>Website by <a href="https://www.qrenzy.com" target="_blank" rel="noopener">Qrenzy Digital Solutions</a></span>
+  </div>
+</footer>
+
+<a class="fab" data-wa="Hi, I'd like to know more about the gym." href="#" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg>
+</a>
+
+<script>
+/* ===== EDIT THESE FOR EACH CLIENT ===== */
+const CONFIG = {
+  name: "FitZone Gym",
+  whatsapp: "919905700600",          // country code + number, no + or spaces
+  phoneDisplay: "+91 99057 00600",
+  address: "Main Road, Your Town, Kerala 000000",
+  mapQuery: "Gym near Kochi, Kerala"   // any place name or address Google Maps understands
+};
+/* ====================================== */
+
+const wa = t => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+document.querySelectorAll('[data-wa]').forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+document.querySelector('[data-addr]').textContent = CONFIG.address;
+const tel = document.querySelector('[data-tel]'); tel.textContent = CONFIG.phoneDisplay; tel.href = "tel:+" + CONFIG.whatsapp;
+document.querySelector('[data-brand-name]').textContent = CONFIG.name;
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('map').src = "https://maps.google.com/maps?q=" + encodeURIComponent(CONFIG.mapQuery) + "&output=embed";
+document.title = CONFIG.name + " | Strength, Cardio & Personal Training";
+
+document.getElementById('enq').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const msg = `Hi ${CONFIG.name}, I'd like to book a free trial.\nName: ${f.get('name')}\nPhone: ${f.get('phone')}\nGoal: ${f.get('goal')}` + (f.get('msg') ? `\nMessage: ${f.get('msg')}` : "");
+  window.open(wa(msg), "_blank", "noopener");
+});
+</script>
+</body>
+</html>
