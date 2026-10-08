@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Demo pages use sample content and carry a noindex tag.
+Sitemap: https://demo.qrenzy.com/sitemap.xml

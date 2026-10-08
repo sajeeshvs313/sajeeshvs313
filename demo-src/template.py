@@ -1,30 +1,23 @@
-<!doctype html>
-<html lang="en-IN" data-theme="dark" style="--acc:#f59e0b;--acc2:#ef4444;--on-acc:#14151a;--font-body:'DM Sans',system-ui,sans-serif;--font-head:'Fraunces',system-ui,sans-serif">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Spice Route Kitchen Kochi | Kerala Meals, Biriyani &amp; Seafood</title>
-<meta name="description" content="Spice Route Kitchen in Kochi serves authentic Kerala meals from ₹150, biriyani, seafood and tandoor. Dine in, take away or order home delivery on WhatsApp.">
-<meta name="robots" content="noindex,follow">
-<!-- Demo site: remove noindex (INDEXABLE=True) only when this becomes a real client website -->
-<link rel="canonical" href="https://demo.qrenzy.com/restaurant/">
-<link rel="alternate" hreflang="en-IN" href="https://demo.qrenzy.com/restaurant/">
-<meta name="theme-color" content="#0b0c10">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Spice Route Kitchen">
-<meta property="og:title" content="Spice Route Kitchen Kochi | Kerala Meals, Biriyani &amp; Seafood">
-<meta property="og:description" content="Spice Route Kitchen in Kochi serves authentic Kerala meals from ₹150, biriyani, seafood and tandoor. Dine in, take away or order home delivery on WhatsApp.">
-<meta property="og:url" content="https://demo.qrenzy.com/restaurant/">
-<meta property="og:locale" content="en_IN">
-<meta property="og:image" content="https://demo.qrenzy.com/assets/thumbs/restaurant.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Spice Route Kitchen Kochi | Kerala Meals, Biriyani &amp; Seafood">
-<meta name="twitter:description" content="Spice Route Kitchen in Kochi serves authentic Kerala meals from ₹150, biriyani, seafood and tandoor. Dine in, take away or order home delivery on WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Restaurant", "@id": "https://demo.qrenzy.com/restaurant/#business", "name": "Spice Route Kitchen", "url": "https://demo.qrenzy.com/restaurant/", "description": "Spice Route Kitchen in Kochi serves authentic Kerala meals from ₹150, biriyani, seafood and tandoor. Dine in, take away or order home delivery on WhatsApp.", "telephone": "+919905700600", "priceRange": "₹₹", "address": {"@type": "PostalAddress", "streetAddress": "Main Road, Your Locality", "addressLocality": "Kochi", "addressRegion": "Kerala", "addressCountry": "IN"}, "areaServed": [{"@type": "City", "name": "Kochi"}, {"@type": "City", "name": "Ernakulam"}, {"@type": "City", "name": "Aluva"}, {"@type": "City", "name": "Kakkanad"}, {"@type": "City", "name": "Thrippunithura"}, {"@type": "City", "name": "Edappally"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "11:00", "closes": "23:00"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Our specialties", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kerala meals", "description": "Traditional meals with rice, curries, thoran and payasam."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Biriyani", "description": "Fragrant, slow-cooked biriyani made fresh daily."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Seafood fry", "description": "Fish and prawn dishes marinated in house masala."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Parotta & curries", "description": "Soft parotta with beef, chicken or veg curry."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tandoor & grill", "description": "Smoky tandoori, kebabs and grilled platters."}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Desserts & drinks", "description": "Falooda, fresh juices and traditional sweets."}}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the price of Kerala meals at Spice Route Kitchen?", "acceptedAnswer": {"@type": "Answer", "text": "Kerala meals start at ₹150 per plate with unlimited rice (sample price). Biriyani starts at ₹220."}}, {"@type": "Question", "name": "Do you offer home delivery in Kochi?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Delivery is free within 5 km. Order on WhatsApp and we'll confirm the timing."}}, {"@type": "Question", "name": "Can I book a table or a party?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Message us with the date, time and number of guests to reserve a table or plan a party order."}}, {"@type": "Question", "name": "What are the restaurant timings?", "acceptedAnswer": {"@type": "Answer", "text": "We are open every day from 11 AM to 11 PM."}}, {"@type": "Question", "name": "Do you have vegetarian options?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our menu includes vegetarian meals, veg biriyani and paneer and vegetable curries."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Demos", "item": "https://demo.qrenzy.com/"}, {"@type": "ListItem", "position": 2, "name": "Restaurant & Café", "item": "https://demo.qrenzy.com/restaurant/"}]}]}</script>
-<style>
+"""Demo website template: one self-contained, SEO/AEO-ready HTML page per business."""
+import html, json
+
+DOMAIN = "https://demo.qrenzy.com"
+INDEXABLE = False  # demos use sample content; flip to True only on a real client site
+
+FONTS = {
+    "sans":    ("Plus+Jakarta+Sans:wght@400;500;600;700;800", "'Plus Jakarta Sans'", "'Plus Jakarta Sans'"),
+    "serif":   ("Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700", "'DM Sans'", "'Fraunces'"),
+    "grotesk": ("Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700", "'Inter'", "'Space Grotesk'"),
+    "bold":    ("Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700", "'Plus Jakarta Sans'", "'Sora'"),
+}
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+ABBR = {"Mo": 0, "Tu": 1, "We": 2, "Th": 3, "Fr": 4, "Sa": 5, "Su": 6}
+
+WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg>'
+PHONE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>'
+ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+
+CSS = r"""
 :root{
   --bg:#fff;--surface:#fff;--surface2:#f6f6f8;--ink:#14151a;--muted:#5a606c;--line:#e7e8ec;
   --on-acc:#fff;--r:22px;--r-sm:14px;--wa:#1faa59;
@@ -273,173 +266,9 @@ html.js .rv.in{opacity:1;transform:none}
   footer{padding-bottom:120px}.nav-cta .btn-p{display:none}
   .hero-cta .btn{flex:1 1 100%}
 }
-</style>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="ribbon">Demo website by Qrenzy Digital Solutions. <a href="https://www.qrenzy.com" rel="noopener">Get one for your business →</a></div>
+"""
 
-<header class="site">
-  <div class="container nav">
-    <a class="logo" href="#top" aria-label="Spice Route Kitchen home"><i aria-hidden="true">🍛</i><b>Spice<span>Route</span></b></a>
-    <nav aria-label="Main"><ul class="menu" id="menu">
-      <li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#work">Dishes</a></li>
-      <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
-    </ul></nav>
-    <div class="nav-cta">
-      <a class="btn btn-o btn-sm keep" data-tel href="#"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Call</a>
-      <a class="btn btn-p btn-sm" href="#contact">Reserve</a>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
-  </div>
-</header>
-
-<main id="main">
-<section class="hero hero--center" id="top">
-  <div class="container">
-    <div>
-      <span class="badge"><b>OPEN</b>Lunch served 11 AM – 3 PM</span>
-      <h1>Authentic <em>Kerala</em> flavours</h1>
-      <p class="lead">Spice Route Kitchen is a Kerala restaurant in Kochi serving traditional meals from ₹150, biriyani, seafood and grills. Dine in, take away or get free delivery within 5 km.</p>
-      <div class="hero-cta">
-        <a class="btn btn-p" href="#contact">Reserve a table <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-w" data-wa="Hi, I would like to place an order." href="#"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg> WhatsApp</a>
-      </div>
-      <ul class="trust"><li>Fresh daily</li><li>Free delivery within 5 km</li><li>Party &amp; bulk orders</li></ul>
-    </div>
-    <div class="stage" aria-hidden="true">
-      <div class="mesh"></div><div class="big">🍛</div>
-      <div class="glass a"><b>⭐ 4.8 diners&#x27; rating</b><small>sample rating</small></div>
-      <div class="glass b"><b>🛵 Free delivery</b><small>within 5 km</small></div>
-      <div class="glass q"><h2>Quick facts</h2><div><span>Meals from</span><strong>₹150 / plate</strong></div><div><span>Open</span><strong>11 AM – 11 PM</strong></div><div><span>Delivery</span><strong>Free within 5 km</strong></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="glance" aria-labelledby="glance-h">
-  <div class="container"><div class="glance-card rv">
-    <div><span class="eyebrow">Quick answer</span><h2 id="glance-h">Spice Route Kitchen at a glance</h2><p>Spice Route Kitchen is a Kerala restaurant in Kochi serving traditional meals, biriyani, seafood fry, parotta curries and tandoor. Meals start at ₹150 and home delivery is free within 5 km.</p></div>
-    <dl><div><dt>Meals from</dt><dd>₹150 / plate</dd></div><div><dt>Open</dt><dd>11 AM – 11 PM</dd></div><div><dt>Delivery</dt><dd>Free within 5 km</dd></div><div><dt>Dine-in seats</dt><dd>60</dd></div></dl>
-  </div></div>
-</section>
-
-<section id="services" aria-labelledby="services-h">
-  <div class="container">
-    <div class="sec-head rv"><span class="eyebrow">What we serve</span><h2 id="services-h">Our specialties</h2><p>Home-style recipes cooked fresh every day.</p></div>
-    <div class="bento"><article class="card rv"><div class="ico" aria-hidden="true">🍚</div><h3>Kerala meals</h3><p>Traditional meals with rice, curries, thoran and payasam.</p><a class="more" data-wa="Hi, I would like to know more about Kerala meals." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
-<article class="card rv"><div class="ico" aria-hidden="true">🍗</div><h3>Biriyani</h3><p>Fragrant, slow-cooked biriyani made fresh daily.</p><a class="more" data-wa="Hi, I would like to know more about Biriyani." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
-<article class="card rv"><div class="ico" aria-hidden="true">🐟</div><h3>Seafood fry</h3><p>Fish and prawn dishes marinated in house masala.</p><a class="more" data-wa="Hi, I would like to know more about Seafood fry." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
-<article class="card rv"><div class="ico" aria-hidden="true">🫓</div><h3>Parotta &amp; curries</h3><p>Soft parotta with beef, chicken or veg curry.</p><a class="more" data-wa="Hi, I would like to know more about Parotta &amp; curries." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
-<article class="card rv"><div class="ico" aria-hidden="true">🔥</div><h3>Tandoor &amp; grill</h3><p>Smoky tandoori, kebabs and grilled platters.</p><a class="more" data-wa="Hi, I would like to know more about Tandoor &amp; grill." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
-<article class="card rv"><div class="ico" aria-hidden="true">🍨</div><h3>Desserts &amp; drinks</h3><p>Falooda, fresh juices and traditional sweets.</p><a class="more" data-wa="Hi, I would like to know more about Desserts &amp; drinks." href="#contact">Ask about this <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article></div>
-  </div>
-</section>
-
-<section class="alt" aria-labelledby="why-h">
-  <div class="container why">
-    <div class="rv"><span class="eyebrow">Why choose us</span><h2 id="why-h">Taste you remember</h2><p class="lead">Fresh ingredients, traditional recipes and generous portions at honest prices.</p><ul class="checks"><li><span>Cooked fresh daily<small>No reheated food, only same-day preparation.</small></span></li><li><span>Traditional recipes<small>Handed-down Malabar and Kerala flavours.</small></span></li><li><span>Family friendly<small>Comfortable seating and a kids&#x27; menu.</small></span></li><li><span>Events &amp; parties<small>Bulk and party orders with on-time delivery.</small></span></li></ul></div>
-    <div class="stats"><div class="stat rv"><b>4.8</b><span>Customer rating</span></div><div class="stat rv"><b>60+</b><span>Dishes on menu</span></div><div class="stat rv"><b>100%</b><span>Fresh ingredients</span></div><div class="stat rv"><b>12 hrs</b><span>Open daily</span></div></div>
-  </div>
-</section>
-
-<section id="pricing" aria-labelledby="pricing-h">
-  <div class="container">
-    <div class="sec-head center rv"><span class="eyebrow">Menu favourites</span><h2 id="pricing-h">Customer favourites</h2><p>Sample prices shown. Replace with your actual menu.</p></div>
-    <div class="plans"><article class="plan rv"><h3>Kerala meals</h3><p class="for">Lunch special</p><div class="price"><sup>₹</sup>150<small> /plate</small></div><ul><li>Rice with 3 curries</li><li>Thoran &amp; pickle</li><li>Papad &amp; curd</li><li>Unlimited rice</li></ul><a class="btn btn-o" data-wa="Hi, I am interested in Kerala meals." href="#contact">Order meals</a></article><article class="plan rv pop"><span class=tag>MOST POPULAR</span><h3>Chicken biriyani</h3><p class="for">Chef&#x27;s pick</p><div class="price"><sup>₹</sup>220<small> /plate</small></div><ul><li>Fragrant biriyani rice</li><li>Tender chicken</li><li>Raita &amp; salad</li><li>Pickle on the side</li></ul><a class="btn btn-p" data-wa="Hi, I am interested in Chicken biriyani." href="#contact">Order biriyani</a></article><article class="plan rv"><h3>Family combo</h3><p class="for">Serves 4</p><div class="price"><sup>₹</sup>799<small> /combo</small></div><ul><li>Biriyani for 4</li><li>Starter platter</li><li>4 soft drinks</li><li>Dessert to share</li></ul><a class="btn btn-o" data-wa="Hi, I am interested in Family combo." href="#contact">Order combo</a></article></div>
-    <p class="fine">Sample prices for demo. Final rates depend on your requirements.</p>
-  </div>
-</section>
-
-<section class="alt" id="work" aria-labelledby="work-h">
-  <div class="container">
-    <div class="sec-head rv"><span class="eyebrow">The kitchen</span><h2 id="work-h">Signature dishes</h2><p>The plates our regulars come back for.</p></div>
-    <div class="show"><article class="tile rv"><div class="pic"><em>SEAFOOD</em><span aria-hidden="true">🐟</span></div><div class="in"><h3>Karimeen pollichathu</h3><p>Pearl spot fish in banana leaf</p><a class="more" data-wa="Hi, I am interested in: Karimeen pollichathu." href="#contact">Enquire →</a></div></article><article class="tile rv"><div class="pic"><em>BIRIYANI</em><span aria-hidden="true">🍗</span></div><div class="in"><h3>Malabar biriyani</h3><p>Dum-cooked, served with raita</p><a class="more" data-wa="Hi, I am interested in: Malabar biriyani." href="#contact">Enquire →</a></div></article><article class="tile rv"><div class="pic"><em>CLASSIC</em><span aria-hidden="true">🫓</span></div><div class="in"><h3>Beef fry &amp; parotta</h3><p>Kerala classic combo</p><a class="more" data-wa="Hi, I am interested in: Beef fry &amp; parotta." href="#contact">Enquire →</a></div></article><article class="tile rv"><div class="pic"><em>DESSERT</em><span aria-hidden="true">🍨</span></div><div class="in"><h3>Falooda</h3><p>Cool dessert drink</p><a class="more" data-wa="Hi, I am interested in: Falooda." href="#contact">Enquire →</a></div></article></div>
-  </div>
-</section>
-
-<section aria-labelledby="steps-h">
-  <div class="container">
-    <div class="sec-head center rv"><span class="eyebrow">How it works</span><h2 id="steps-h">From enquiry to done in 4 simple steps</h2></div>
-    <ol class="steps"><li class="step rv"><h3>Choose</h3><p>Browse the menu and pick your dishes.</p></li><li class="step rv"><h3>Order or reserve</h3><p>Message us on WhatsApp to order or book a table.</p></li><li class="step rv"><h3>We prepare fresh</h3><p>Cooked after you order, never reheated.</p></li><li class="step rv"><h3>Enjoy</h3><p>Dine in, take away or get it delivered.</p></li></ol>
-  </div>
-</section>
-
-<section class="alt" aria-labelledby="rev-h">
-  <div class="container">
-    <div class="sec-head rv"><span class="eyebrow">Testimonials</span><h2 id="rev-h">What customers say</h2><p>Sample testimonials for demo. Replace with real customer reviews.</p></div>
-    <div class="revs"><figure class="rev rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Best biriyani in town. Fresh and full of flavour!”</blockquote><figcaption class="who"><i aria-hidden="true">N</i><span>Nizar A.<small>Regular customer</small></span></figcaption></figure><figure class="rev rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Love the Kerala meals. Tastes just like home.”</blockquote><figcaption class="who"><i aria-hidden="true">R</i><span>Remya V.<small>Dined with family</small></span></figcaption></figure><figure class="rev rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“Ordered for a party of 30. Everything was perfect and on time.”</blockquote><figcaption class="who"><i aria-hidden="true">J</i><span>Jacob P.<small>Party order</small></span></figcaption></figure></div>
-  </div>
-</section>
-
-<section id="faq" aria-labelledby="faq-h">
-  <div class="container">
-    <div class="sec-head center rv"><span class="eyebrow">FAQ</span><h2 id="faq-h">Frequently asked questions</h2></div>
-    <div class="faq"><details class="rv"><summary>What is the price of Kerala meals at Spice Route Kitchen?</summary><p>Kerala meals start at ₹150 per plate with unlimited rice (sample price). Biriyani starts at ₹220.</p></details><details class="rv"><summary>Do you offer home delivery in Kochi?</summary><p>Yes. Delivery is free within 5 km. Order on WhatsApp and we&#x27;ll confirm the timing.</p></details><details class="rv"><summary>Can I book a table or a party?</summary><p>Yes. Message us with the date, time and number of guests to reserve a table or plan a party order.</p></details><details class="rv"><summary>What are the restaurant timings?</summary><p>We are open every day from 11 AM to 11 PM.</p></details><details class="rv"><summary>Do you have vegetarian options?</summary><p>Yes. Our menu includes vegetarian meals, veg biriyani and paneer and vegetable curries.</p></details></div>
-    <div class="areas rv" aria-label="Areas we serve"><span style="background:var(--acc);color:var(--on-acc);border-color:var(--acc)">📍 Areas we serve</span><span>Kochi</span><span>Ernakulam</span><span>Aluva</span><span>Kakkanad</span><span>Thrippunithura</span><span>Edappally</span></div>
-  </div>
-</section>
-
-<section class="cta-band">
-  <div class="container"><div class="cta-box rv">
-    <div><h2>Free delivery within 5 km</h2><p>Order on WhatsApp for fast home delivery or easy takeaway.</p></div>
-    <a class="btn" href="#contact">Order now <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div></div>
-</section>
-
-<section id="contact" aria-labelledby="contact-h">
-  <div class="container">
-    <div class="sec-head rv"><span class="eyebrow">Contact</span><h2 id="contact-h">Get in touch</h2></div>
-    <div class="cgrid">
-      <div class="panel rv">
-        <address class="info" style="font-style:normal">
-          <div><i aria-hidden="true">📍</i><p><b>Address</b><span>Main Road, Your Locality, Kochi, Kerala</span></p></div>
-          <div><i aria-hidden="true">📞</i><p><b>Call / WhatsApp</b><a data-tel href="#">+91 99057 00600</a></p></div>
-          <div><i aria-hidden="true">🕒</i><p><b>Opening hours</b><span>Every day 11 AM – 11 PM</span></p></div>
-        </address>
-        <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Spice Route Kitchen location"></iframe>
-      </div>
-      <div class="panel rv">
-        <h3 style="font-size:25px">Reserve or order</h3>
-        <p class="note" style="margin-top:6px">Fill the form and we'll continue on WhatsApp.</p>
-        <form id="enq">
-          <div><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name" placeholder="Full name"></div>
-          <div><label for="f-phone">Phone number</label><input id="f-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="10-digit mobile number"></div>
-          <div><label for="f-sel">I want to</label><select id="f-sel" name="sel"><option>Reserve a table</option><option>Place a takeaway order</option><option>Order home delivery</option><option>Party / bulk order</option></select></div>
-          <div><label for="f-extra">Preferred date and time</label><input id="f-extra" name="extra" type="text" placeholder="e.g. Saturday, 8 PM"></div>
-          <div><label for="f-msg">Message (optional)</label><textarea id="f-msg" name="msg" placeholder="Tell us what you need..."></textarea></div>
-          <button class="btn btn-w" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg> Send on WhatsApp</button>
-          <p class="note">Your details are only used to reply to this enquiry.</p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="fgrid">
-      <div><a class="logo" href="#top"><i aria-hidden="true">🍛</i><b>Spice<span>Route</span></b></a><p>Spice Route Kitchen in Kochi serves authentic Kerala meals from ₹150, biriyani, seafood and tandoor. Dine in, take away or order home delivery on WhatsApp.</p></div>
-      <div><h3>Services</h3><ul><li><a href="#services">Kerala meals</a></li><li><a href="#services">Biriyani</a></li><li><a href="#services">Seafood fry</a></li><li><a href="#services">Parotta &amp; curries</a></li><li><a href="#services">Tandoor &amp; grill</a></li></ul></div>
-      <div><h3>Company</h3><ul><li><a href="#pricing">Pricing</a></li><li><a href="#work">Dishes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
-      <div><h3>Contact</h3><ul><li>Main Road, Your Locality, Kochi</li><li><a data-tel href="#">+91 99057 00600</a></li><li>Every day 11 AM – 11 PM</li></ul></div>
-    </div>
-    <div class="fbar"><span>© <span id="yr"></span> Spice Route Kitchen. Sample content for demo.</span><span>Website by <a href="https://www.qrenzy.com" rel="noopener" target="_blank">Qrenzy Digital Solutions</a></span></div>
-  </div>
-</footer>
-
-<nav class="mbar" aria-label="Quick actions">
-  <a class="c keep" data-tel href="#"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Call</a>
-  <a class="w" data-wa="Hi, I would like to know more about Spice Route Kitchen." href="#"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg> WhatsApp</a>
-  <a class="e" href="#contact">Reserve</a>
-</nav>
-<a class="fab" data-wa="Hi, I would like to know more about Spice Route Kitchen." href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg></a>
-
-<script>
-/* ===== CLIENT SETTINGS: edit for each client ===== */
-const CONFIG = {"name": "Spice Route Kitchen", "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": "Restaurant near Kochi, Kerala", "intent": "reserve a table or place an order", "selLabel": "I want to", "extraLabel": "Preferred date and time"};
-/* ================================================= */
-
+JS = r"""
 (function(){
 var d=document,r=d.documentElement;r.classList.add('js');
 var wa=function(t){return 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(t)};
@@ -458,7 +287,280 @@ var t='Hi '+CONFIG.name+', I would like to '+CONFIG.intent+'.\nName: '+v.get('na
 if(CONFIG.extraLabel&&v.get('extra'))t+='\n'+CONFIG.extraLabel+': '+v.get('extra');
 if(v.get('msg'))t+='\nMessage: '+v.get('msg');window.open(wa(t),'_blank','noopener')});
 })();
+"""
 
+
+def e(s):
+    return html.escape(str(s), quote=True)
+
+
+def hours_schema(spec):
+    out = []
+    for days, o, c in spec:
+        if "-" in days:
+            a, b = days.split("-")
+            names = DAYS[ABBR[a]:ABBR[b] + 1]
+        else:
+            names = [DAYS[ABBR[x]] for x in days.split(",")]
+        out.append({"@type": "OpeningHoursSpecification", "dayOfWeek": names, "opens": o, "closes": c})
+    return out
+
+
+def build_page(s):
+    url = f"{DOMAIN}/{s['slug']}/"
+    dark = s.get("theme") == "dark"
+    ft = FONTS[s.get("font", "sans")]
+    a1, a2 = s["brand"]
+    h1a, h1em, h1b = s["h1"]
+    robots = "index,follow,max-image-preview:large,max-snippet:-1" if INDEXABLE else "noindex,follow"
+    title = f"{s['title']}"
+    # --- structured data (static, crawler-friendly) ---
+    ld_business = {
+        "@type": s.get("schema", "LocalBusiness"), "@id": url + "#business", "name": s["name"], "url": url,
+        "description": s["desc"], "telephone": "+919905700600", "priceRange": s.get("range", "₹₹"),
+        "address": {"@type": "PostalAddress", "streetAddress": s["addr"], "addressLocality": s.get("city", "Kochi"),
+                    "addressRegion": "Kerala", "addressCountry": "IN"},
+        "areaServed": [{"@type": "City", "name": a} for a in s["areas"]],
+        "openingHoursSpecification": hours_schema(s["hours_spec"]),
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": s["services_h"], "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": t, "description": d}} for _, t, d in s["services"]]},
+    }
+    ld = {"@context": "https://schema.org", "@graph": [
+        ld_business,
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s["faq"]]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Demos", "item": DOMAIN + "/"},
+            {"@type": "ListItem", "position": 2, "name": s["cat"], "item": url}]},
+    ]}
+    services = "\n".join(
+        f'<article class="card rv"><div class="ico" aria-hidden="true">{i}</div><h3>{e(t)}</h3><p>{e(d)}</p>'
+        f'<a class="more" data-wa="Hi, I would like to know more about {e(t)}." href="#contact">Ask about this {ARROW}</a></article>'
+        for i, t, d in s["services"])
+    chk = "".join(f"<li><span>{e(t)}<small>{e(d)}</small></span></li>" for t, d in s["why"][2])
+    stats = "".join(f'<div class="stat rv"><b>{e(v)}</b><span>{e(l)}</span></div>' for v, l in s["stats"])
+    plans = []
+    for idx, (pn, fr, price, unit, feats, btn) in enumerate(s["plans"]):
+        pop = idx == s.get("pop", 1)
+        li = "".join(f"<li>{e(f)}</li>" for f in feats)
+        plans.append(
+            f'<article class="plan rv{" pop" if pop else ""}">{"<span class=tag>MOST POPULAR</span>" if pop else ""}'
+            f'<h3>{e(pn)}</h3><p class="for">{e(fr)}</p><div class="price"><sup>₹</sup>{e(price)}<small> {e(unit)}</small></div><ul>{li}</ul>'
+            f'<a class="btn {"btn-p" if pop else "btn-o"}" data-wa="Hi, I am interested in {e(pn)}." href="#contact">{e(btn)}</a></article>')
+    show = "".join(
+        f'<article class="tile rv"><div class="pic"><em>{e(tag)}</em><span aria-hidden="true">{i}</span></div><div class="in"><h3>{e(t)}</h3><p>{e(m)}</p>'
+        f'<a class="more" data-wa="Hi, I am interested in: {e(t)}." href="#contact">Enquire →</a></div></article>'
+        for t, m, tag, i in s["show"])
+    steps = "".join(f'<li class="step rv"><h3>{e(t)}</h3><p>{e(d)}</p></li>' for t, d in s["steps"])
+    revs = "".join(
+        f'<figure class="rev rv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“{e(t)}”</blockquote>'
+        f'<figcaption class="who"><i aria-hidden="true">{e(n[0])}</i><span>{e(n)}<small>{e(sub)}</small></span></figcaption></figure>'
+        for t, n, sub in s["reviews"])
+    faq = "".join(f'<details class="rv"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in s["faq"])
+    glance_dl = "".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in s["glance"])
+    q_rows = "".join(f"<div><span>{e(k)}</span><strong>{e(v)}</strong></div>" for k, v in s["glance"][:3])
+    areas = "".join(f"<span>{e(a)}</span>" for a in s["areas"])
+    opts = "".join(f"<option>{e(o)}</option>" for o in s["sel"][1])
+    extra = ""
+    extra_label = ""
+    if s.get("extra"):
+        lab, typ, ph = s["extra"]
+        extra_label = lab
+        extra = f'<div><label for="f-extra">{e(lab)}</label><input id="f-extra" name="extra" type="{typ}" placeholder="{e(ph)}"></div>'
+    svc_links = "".join(f'<li><a href="#services">{e(t)}</a></li>' for _, t, _ in s["services"][:5])
+    cfg = json.dumps({"name": s["name"], "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": s["map"],
+                      "intent": s["intent"], "selLabel": s["sel"][0], "extraLabel": extra_label}, ensure_ascii=False)
+    body_font, head_font = ft[1], ft[2]
+    og_img = ""
+    page = f"""<!doctype html>
+<html lang="en-IN"{' data-theme="dark"' if dark else ''} style="--acc:{s['acc']};--acc2:{s['acc2']};--on-acc:{s.get('on_acc','#fff')};--font-body:{body_font},system-ui,sans-serif;--font-head:{head_font},system-ui,sans-serif{';--bg:' + s['bg'] if s.get('bg') and not dark else ''}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{e(title)}</title>
+<meta name="description" content="{e(s['desc'])}">
+<meta name="robots" content="{robots}">
+<!-- Demo site: remove noindex (INDEXABLE=True) only when this becomes a real client website -->
+<link rel="canonical" href="{url}">
+<link rel="alternate" hreflang="en-IN" href="{url}">
+<meta name="theme-color" content="{'#0b0c10' if dark else s['acc']}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{e(s['name'])}">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(s['desc'])}">
+<meta property="og:url" content="{url}">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="{DOMAIN}/assets/thumbs/{s['slug']}.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(title)}">
+<meta name="twitter:description" content="{e(s['desc'])}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family={ft[0]}&display=swap" rel="stylesheet">
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<style>{CSS}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="ribbon">Demo website by Qrenzy Digital Solutions. <a href="https://www.qrenzy.com" rel="noopener">Get one for your business →</a></div>
+
+<header class="site">
+  <div class="container nav">
+    <a class="logo" href="#top" aria-label="{e(s['name'])} home"><i aria-hidden="true">{s['emoji']}</i><b>{e(a1)}<span>{e(a2)}</span></b></a>
+    <nav aria-label="Main"><ul class="menu" id="menu">
+      <li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#work">{e(s['work_nav'])}</a></li>
+      <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <div class="nav-cta">
+      <a class="btn btn-o btn-sm keep" data-tel href="#">{PHONE_SVG} Call</a>
+      <a class="btn btn-p btn-sm" href="#contact">{e(s['nav_cta'])}</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero--{s.get('hero','split')}" id="top">
+  <div class="container">
+    <div>
+      <span class="badge"><b>{e(s['badge'][0])}</b>{e(s['badge'][1])}</span>
+      <h1>{e(h1a)} <em>{e(h1em)}</em> {e(h1b)}</h1>
+      <p class="lead">{e(s['lead'])}</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#contact">{e(s['cta1'])} {ARROW}</a>
+        <a class="btn btn-w" data-wa="{e(s['wa_hero'])}" href="#">{WA_SVG} WhatsApp</a>
+      </div>
+      <ul class="trust">{"".join(f"<li>{e(t)}</li>" for t in s['trust'])}</ul>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="mesh"></div><div class="big">{s['emoji']}</div>
+      <div class="glass a"><b>{e(s['chips'][0][0])}</b><small>{e(s['chips'][0][1])}</small></div>
+      <div class="glass b"><b>{e(s['chips'][1][0])}</b><small>{e(s['chips'][1][1])}</small></div>
+      <div class="glass q"><h2>Quick facts</h2>{q_rows}</div>
+    </div>
+  </div>
+</section>
+
+<section class="glance" aria-labelledby="glance-h">
+  <div class="container"><div class="glance-card rv">
+    <div><span class="eyebrow">Quick answer</span><h2 id="glance-h">{e(s['glance_h'])}</h2><p>{e(s['glance_p'])}</p></div>
+    <dl>{glance_dl}</dl>
+  </div></div>
+</section>
+
+<section id="services" aria-labelledby="services-h">
+  <div class="container">
+    <div class="sec-head rv"><span class="eyebrow">{e(s['services_eye'])}</span><h2 id="services-h">{e(s['services_h'])}</h2><p>{e(s['services_p'])}</p></div>
+    <div class="bento">{services}</div>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="why-h">
+  <div class="container why">
+    <div class="rv"><span class="eyebrow">Why choose us</span><h2 id="why-h">{e(s['why'][0])}</h2><p class="lead">{e(s['why'][1])}</p><ul class="checks">{chk}</ul></div>
+    <div class="stats">{stats}</div>
+  </div>
+</section>
+
+<section id="pricing" aria-labelledby="pricing-h">
+  <div class="container">
+    <div class="sec-head center rv"><span class="eyebrow">{e(s['plans_eye'])}</span><h2 id="pricing-h">{e(s['plans_h'])}</h2><p>{e(s['plans_p'])}</p></div>
+    <div class="plans">{"".join(plans)}</div>
+    <p class="fine">Sample prices for demo. Final rates depend on your requirements.</p>
+  </div>
+</section>
+
+<section class="alt" id="work" aria-labelledby="work-h">
+  <div class="container">
+    <div class="sec-head rv"><span class="eyebrow">{e(s['show_eye'])}</span><h2 id="work-h">{e(s['show_h'])}</h2><p>{e(s['show_p'])}</p></div>
+    <div class="show">{show}</div>
+  </div>
+</section>
+
+<section aria-labelledby="steps-h">
+  <div class="container">
+    <div class="sec-head center rv"><span class="eyebrow">How it works</span><h2 id="steps-h">{e(s['steps_h'])}</h2></div>
+    <ol class="steps">{steps}</ol>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="rev-h">
+  <div class="container">
+    <div class="sec-head rv"><span class="eyebrow">Testimonials</span><h2 id="rev-h">What customers say</h2><p>Sample testimonials for demo. Replace with real customer reviews.</p></div>
+    <div class="revs">{revs}</div>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faq-h">
+  <div class="container">
+    <div class="sec-head center rv"><span class="eyebrow">FAQ</span><h2 id="faq-h">{e(s['faq_h'])}</h2></div>
+    <div class="faq">{faq}</div>
+    <div class="areas rv" aria-label="Areas we serve"><span style="background:var(--acc);color:var(--on-acc);border-color:var(--acc)">📍 Areas we serve</span>{areas}</div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container"><div class="cta-box rv">
+    <div><h2>{e(s['offer'][0])}</h2><p>{e(s['offer'][1])}</p></div>
+    <a class="btn" href="#contact">{e(s['offer'][2])} {ARROW}</a>
+  </div></div>
+</section>
+
+<section id="contact" aria-labelledby="contact-h">
+  <div class="container">
+    <div class="sec-head rv"><span class="eyebrow">Contact</span><h2 id="contact-h">{e(s['contact_h'])}</h2></div>
+    <div class="cgrid">
+      <div class="panel rv">
+        <address class="info" style="font-style:normal">
+          <div><i aria-hidden="true">📍</i><p><b>Address</b><span>{e(s['addr'])}, {e(s.get('city','Kochi'))}, Kerala</span></p></div>
+          <div><i aria-hidden="true">📞</i><p><b>Call / WhatsApp</b><a data-tel href="#">+91 99057 00600</a></p></div>
+          <div><i aria-hidden="true">🕒</i><p><b>Opening hours</b><span>{e(s['hours_txt'])}</span></p></div>
+        </address>
+        <iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing {e(s['name'])} location"></iframe>
+      </div>
+      <div class="panel rv">
+        <h3 style="font-size:25px">{e(s['form_title'])}</h3>
+        <p class="note" style="margin-top:6px">Fill the form and we'll continue on WhatsApp.</p>
+        <form id="enq">
+          <div><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name" placeholder="Full name"></div>
+          <div><label for="f-phone">Phone number</label><input id="f-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="10-digit mobile number"></div>
+          <div><label for="f-sel">{e(s['sel'][0])}</label><select id="f-sel" name="sel">{opts}</select></div>
+          {extra}
+          <div><label for="f-msg">Message (optional)</label><textarea id="f-msg" name="msg" placeholder="Tell us what you need..."></textarea></div>
+          <button class="btn btn-w" type="submit">{WA_SVG} Send on WhatsApp</button>
+          <p class="note">Your details are only used to reply to this enquiry.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div><a class="logo" href="#top"><i aria-hidden="true">{s['emoji']}</i><b>{e(a1)}<span>{e(a2)}</span></b></a><p>{e(s['footer_p'])}</p></div>
+      <div><h3>Services</h3><ul>{svc_links}</ul></div>
+      <div><h3>Company</h3><ul><li><a href="#pricing">Pricing</a></li><li><a href="#work">{e(s['work_nav'])}</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h3>Contact</h3><ul><li>{e(s['addr'])}, {e(s.get('city','Kochi'))}</li><li><a data-tel href="#">+91 99057 00600</a></li><li>{e(s['hours_txt'])}</li></ul></div>
+    </div>
+    <div class="fbar"><span>© <span id="yr"></span> {e(s['name'])}. Sample content for demo.</span><span>Website by <a href="https://www.qrenzy.com" rel="noopener" target="_blank">Qrenzy Digital Solutions</a></span></div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a class="c keep" data-tel href="#">{PHONE_SVG} Call</a>
+  <a class="w" data-wa="{e(s['wa_default'])}" href="#">{WA_SVG} WhatsApp</a>
+  <a class="e" href="#contact">{e(s['nav_cta'])}</a>
+</nav>
+<a class="fab" data-wa="{e(s['wa_default'])}" href="#" aria-label="Chat on WhatsApp">{WA_SVG}</a>
+
+<script>
+/* ===== CLIENT SETTINGS: edit for each client ===== */
+const CONFIG = {cfg};
+/* ================================================= */
+{JS}
 </script>
 </body>
 </html>
+"""
+    return page
