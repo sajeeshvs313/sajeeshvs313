@@ -145,6 +145,7 @@ h1 em{font-style:normal;background:linear-gradient(120deg,var(--acc),var(--acc2)
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px}
 .stat b{display:block;font-family:var(--font-head);font-size:clamp(32px,4vw,46px);letter-spacing:-.03em;line-height:1;background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sample-note{font-size:12.5px;color:var(--muted);margin-top:12px}
 .stat span{color:var(--muted);font-size:14px;font-weight:500;display:block;margin-top:8px}
 
 /* pricing */
@@ -271,7 +272,10 @@ html.js .rv.in{opacity:1;transform:none}
 JS = r"""
 (function(){
 var d=document,r=d.documentElement;r.classList.add('js');
-var wa=function(t){return 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(t)};
+var wa=function(t){if(CONFIG.demoTag)t+='\n\n['+CONFIG.demoTag+']';return 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(t)};
+if(CONFIG.ga4){var gs=d.createElement('script');gs.async=1;gs.src='https://www.googletagmanager.com/gtag/js?id='+CONFIG.ga4;d.head.appendChild(gs);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',CONFIG.ga4)}
+var ev=function(n,p){if(window.gtag)gtag('event',n,p||{})};
+d.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;if(a.hasAttribute('data-wa'))ev(a.getAttribute('data-ev')||'whatsapp_click',{demo:CONFIG.slug});else if((a.getAttribute('href')||'').indexOf('tel:')===0||a.hasAttribute('data-tel'))ev('call_click',{demo:CONFIG.slug})});
 d.querySelectorAll('[data-wa]').forEach(function(a){a.href=wa(a.getAttribute('data-wa'));a.target='_blank';a.rel='noopener'});
 d.querySelectorAll('[data-tel]').forEach(function(a){a.href='tel:+'+CONFIG.whatsapp;if(!a.classList.contains('keep'))a.textContent=CONFIG.phoneDisplay});
 d.getElementById('yr').textContent=new Date().getFullYear();
@@ -285,7 +289,7 @@ var f=d.getElementById('enq');
 f.addEventListener('submit',function(e){e.preventDefault();var v=new FormData(f);
 var t='Hi '+CONFIG.name+', I would like to '+CONFIG.intent+'.\nName: '+v.get('name')+'\nPhone: '+v.get('phone')+'\n'+CONFIG.selLabel+': '+v.get('sel');
 if(CONFIG.extraLabel&&v.get('extra'))t+='\n'+CONFIG.extraLabel+': '+v.get('extra');
-if(v.get('msg'))t+='\nMessage: '+v.get('msg');window.open(wa(t),'_blank','noopener')});
+if(v.get('msg'))t+='\nMessage: '+v.get('msg');ev('form_submit_whatsapp',{demo:CONFIG.slug});window.open(wa(t),'_blank','noopener')});
 })();
 """
 
@@ -367,7 +371,7 @@ def build_page(s):
         extra_label = lab
         extra = f'<div><label for="f-extra">{e(lab)}</label><input id="f-extra" name="extra" type="{typ}" placeholder="{e(ph)}"></div>'
     svc_links = "".join(f'<li><a href="#services">{e(t)}</a></li>' for _, t, _ in s["services"][:5])
-    cfg = json.dumps({"name": s["name"], "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": s["map"],
+    cfg = json.dumps({"slug": s["slug"], "demoTag": f"Sent from demo: {s['name']} ({url})", "ga4": "", "name": s["name"], "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": s["map"],
                       "intent": s["intent"], "selLabel": s["sel"][0], "extraLabel": extra_label}, ensure_ascii=False)
     body_font, head_font = ft[1], ft[2]
     og_img = ""
@@ -401,7 +405,7 @@ def build_page(s):
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="ribbon">Demo website by Qrenzy Digital Solutions. <a href="https://www.qrenzy.com" rel="noopener">Get one for your business →</a></div>
+<div class="ribbon">Sample demo by Qrenzy Digital Solutions: names, prices, reviews and claims here are illustrative and will be customised for your business. <a data-wa="Hi Qrenzy, I would like to get this design: {e(s['name'])} ({url})" data-ev="get_design" href="#">Get this design →</a> <a href="../">All demos</a></div>
 
 <header class="site">
   <div class="container nav">
@@ -457,7 +461,7 @@ def build_page(s):
 <section class="alt" aria-labelledby="why-h">
   <div class="container why">
     <div class="rv"><span class="eyebrow">Why choose us</span><h2 id="why-h">{e(s['why'][0])}</h2><p class="lead">{e(s['why'][1])}</p><ul class="checks">{chk}</ul></div>
-    <div class="stats">{stats}</div>
+    <div><div class="stats">{stats}</div><p class="sample-note">Sample figures for demonstration only. Real numbers are added for your business.</p></div>
   </div>
 </section>
 

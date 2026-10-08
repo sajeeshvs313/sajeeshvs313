@@ -14,6 +14,11 @@ GROUPS = [
 SLUG_GROUP = {s: (k, n) for k, n, ss in GROUPS for s in ss}
 
 # the 15 industries on www.qrenzy.com and the demo that represents each
+ADDRESS = "Medical College Road, Kodankandan Jn, Deepti Nagar, Mundur P.O., Thrissur – 680541"
+MAPS_QUERY = "Qrenzy Digital Solutions, Medical College Road, Kodankandan Junction, Deepti Nagar, Mundur, Thrissur 680541"
+MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=" + MAPS_QUERY.replace(" ", "+").replace(",", "%2C")
+INCLUDED = ["Website design and setup on fast static hosting", "SSL certificate and mobile-first layout", "On-page SEO and structured data as per package", "WhatsApp enquiry form and Google Maps embed", "Handover of your website files"]
+EXCLUDED = ["Domain name and yearly renewal (paid to the registrar)", "GST, as applicable", "Business email accounts", "Professional photography, video and extra copywriting", "Paid advertising budgets"]
 INDUSTRIES = [
     ("💎", "Jewellery & Retail", "jewellery"), ("🏥", "Healthcare & Clinics", "clinic"), ("🏫", "Education & Coaching", "tuition"),
     ("🏗️", "Real Estate", "real-estate"), ("🍽️", "Restaurants & F&B", "restaurant"), ("✈️", "Tourism & Hospitality", "travel"),
@@ -34,15 +39,16 @@ PLANS = [
     ("Business", "Most popular", "12,000", ["Complete website, 6 sections", "Full SEO + FAQ schema", "Google Maps & hours", "Free first-month care"], True),
     ("Growth", "Lead generation", "25,000", ["Everything in Business", "Google Business Profile setup", "Ad-ready landing pages", "Monthly report & updates"], False),
 ]
-TICKER = ["{n} LIVE DEMOS", "15 INDUSTRIES", "SEO + AEO READY", "WHATSAPP LEADS", "LIVE IN 48 HOURS", "MOBILE-FIRST DESIGN", "WEBSITES FROM ₹5,000", "FAQ & SCHEMA INCLUDED"]
+TICKER = ["{n} LIVE DEMOS", "15 INDUSTRIES", "SEO + AEO READY", "WHATSAPP LEADS", "FAST LAUNCH", "MOBILE-FIRST DESIGN", "WEBSITES FROM ₹5,000", "FAQ & SCHEMA INCLUDED"]
 
 
 def build_landing(sites):
     n = len(sites)
     faq_items = [
         ("What is demo.qrenzy.com?", f"demo.qrenzy.com is a showcase of {n} ready-made website designs by Qrenzy Digital Solutions, covering 15 industries such as jewellery, healthcare, real estate, restaurants, manufacturing, IT, fashion, e-commerce, automotive and finance. Each demo is a fully working sample you can open on your phone."),
-        ("How much does a business website cost in Kerala?", "A professional business website from Qrenzy Digital Solutions starts at ₹5,000 for a single-page lead website, with monthly care plans from ₹1,000 (sample pricing). The final price depends on pages, features and content."),
-        ("How long does it take to build a website?", "Most demo-based websites go live in about 48 hours once we have your logo, photos, services and contact details."),
+        ("How much does a business website cost in Kerala?", "Websites from Qrenzy Digital Solutions start at ₹5,000 for a single-page lead website, with optional monthly care plans from ₹1,000. These are introductory prices, not a final quotation. The domain name and renewal, GST as applicable, business email, photography and paid ads are not included and are quoted separately."),
+        ("What is included in the website price?", "Every package includes design and setup on fast static hosting, SSL, a mobile-first layout, on-page SEO and structured data as per the package, a WhatsApp enquiry form, a Google Maps embed and handover of your website files. A domain, GST, business email, photography and ad spend are separate."),
+        ("How long does it take to build a website?", "A demo-based website typically launches in about 48 hours after we receive all required content (logo, photos, services, prices and contact details) and your approvals. Revisions, domain setup and larger websites can take longer, usually 5 to 10 days."),
         ("Will my website show up on Google?", "Every site is built with SEO and AEO foundations: a unique title and description, structured data (LocalBusiness, FAQ), mobile-first speed and clear question-and-answer content that search engines and AI assistants can read. Rankings also depend on competition, content and your Google Business Profile."),
         ("Can you customise a demo for my business?", "Yes. Pick any demo, send us your business name, services, prices, photos and location, and we will customise colours, content and structured data for your business."),
         ("Do I own my website?", "Yes. Your domain and website files belong to you. We can host the site on fast, free-to-run static hosting and hand over all files if you ever want to move."),
@@ -54,21 +60,26 @@ def build_landing(sites):
         short = (short[:118].rsplit(" ", 1)[0] + "…") if len(short) > 120 else short
         short = short[0].upper() + short[1:]
         items.append({"@type": "ListItem", "position": i, "url": f"{DOMAIN}/{s['slug']}/", "name": f"{s['cat']} website demo"})
+        gd = e(f"Hi Qrenzy, I am interested in getting this design: {s['cat']} demo, {s['name']} ({DOMAIN}/{s['slug']}/). Please share the details and next steps.")
+        rc = e(f"Hi Qrenzy, I would like to customise the {s['cat']} demo ({s['name']}, {DOMAIN}/{s['slug']}/) for my business. My business name is: ")
         cards.append(
-            f'<li class="dcard rv" data-g="{gk}" data-q="{e((s["cat"] + " " + s["name"] + " " + gn).lower())}">'
-            f'<a href="{s["slug"]}/" aria-label="View {e(s["cat"])} website demo">'
+            f'<li class="dcard rv" data-g="{gk}" data-q="{e((s["cat"] + " " + s["name"] + " " + gn).lower())}"><article>'
+            f'<a class="cover" href="{s["slug"]}/" data-ev="demo_open" aria-label="View {e(s["cat"])} website demo">'
             f'<div class="shot"><div class="bar"><i></i><i></i><i></i><span>{e(s["slug"])}.qrenzy.com</span></div>'
             f'<img src="assets/thumbs/{s["slug"]}.jpg" width="960" height="600" loading="{"eager" if i <= 3 else "lazy"}" decoding="async" '
             f'alt="{e(s["cat"])} website demo preview: {e(s["name"])}"></div>'
             f'<div class="meta"><span class="tag" style="--c:{s["acc"] if s.get("theme") != "dark" else s["acc2"]}">{s["emoji"]} {e(s["cat"])}</span>'
-            f'<h3>{e(s["name"])}</h3><p>{e(short)}</p><span class="go">View live demo {ARROW}</span></div></a></li>')
+            f'<h3>{e(s["name"])}</h3><p>{e(short)}</p></div></a>'
+            f'<div class="acts"><a class="view" href="{s["slug"]}/" data-ev="demo_open" data-demo="{s["slug"]}">View Live Website {ARROW}</a>'
+            f'<div class="two"><a data-wa="{gd}" data-ev="get_design" data-demo="{s["slug"]}" href="#">Get This Design</a>'
+            f'<a data-wa="{rc}" data-ev="request_customisation" data-demo="{s["slug"]}" href="#">Request Customisation</a></div></div></article></li>')
     chips = f'<button class="chip on" data-f="all" type="button">All <b>{n}</b></button>' + "".join(
         f'<button class="chip" data-f="{k}" type="button">{e(nm)} <b>{len(ss)}</b></button>' for k, nm, ss in GROUPS)
     inds = "".join(f'<a class="ind rv" href="{sl}/"><i aria-hidden="true">{em}</i><span>{e(nm)}</span>{ARROW}</a>' for em, nm, sl in INDUSTRIES)
     inc = "".join(f'<article class="inc rv"><div class="ico" aria-hidden="true">{i}</div><h3>{e(t)}</h3><p>{e(d)}</p></article>' for i, t, d in INCLUDES)
     plans = "".join(
         f'<article class="plan rv{" pop" if pop else ""}">{"<span class=ptag>MOST POPULAR</span>" if pop else ""}<h3>{e(nm)}</h3><p class="for">{e(fr)}</p>'
-        f'<div class="price"><sup>₹</sup>{pr}<small> one-time</small></div><ul>{"".join(f"<li>{e(x)}</li>" for x in fe)}</ul>'
+        f'<div class="price"><sup>₹</sup>{pr}<small> one-time*</small></div><ul>{"".join(f"<li>{e(x)}</li>" for x in fe)}</ul>'
         f'<a class="btn {"btn-p" if pop else "btn-o"}" data-wa="Hi, I am interested in the {e(nm)} website package." href="#">Choose {e(nm)}</a></article>'
         for nm, fr, pr, fe, pop in PLANS)
     faq = "".join(f'<details class="rv"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in faq_items)
@@ -77,10 +88,11 @@ def build_landing(sites):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "ProfessionalService", "@id": "https://www.qrenzy.com/#org", "name": "Qrenzy Digital Solutions", "url": "https://www.qrenzy.com",
          "telephone": "+919905700600", "email": "info@qrenzy.com", "foundingDate": "2020",
-         "address": {"@type": "PostalAddress", "addressLocality": "Thrissur", "addressRegion": "Kerala", "postalCode": "680541", "addressCountry": "IN"},
+         "address": {"@type": "PostalAddress", "streetAddress": "Medical College Road, Kodankandan Jn, Deepti Nagar, Mundur P.O.", "addressLocality": "Thrissur", "addressRegion": "Kerala", "postalCode": "680541", "addressCountry": "IN"}, "hasMap": MAPS_LINK,
+         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "19:30"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "18:00"}],
          "areaServed": ["India", "Oman", "United Arab Emirates", "Bahrain"],
          "description": "AI-powered digital marketing, SEO and website design agency in Thrissur, Kerala.",
-         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business website design"}, "priceCurrency": "INR", "price": "5000"}]},
+         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business website design"}, "priceCurrency": "INR", "price": "5000", "description": "Introductory starting price. Domain, GST and extras are quoted separately."}]},
         {"@type": "WebSite", "@id": DOMAIN + "/#website", "url": DOMAIN + "/", "name": "Qrenzy Website Demos", "publisher": {"@id": "https://www.qrenzy.com/#org"}, "inLanguage": "en-IN"},
         {"@type": "CollectionPage", "@id": DOMAIN + "/#page", "url": DOMAIN + "/", "name": "Website demos for local businesses", "isPartOf": {"@id": DOMAIN + "/#website"},
          "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": items}},
@@ -88,8 +100,13 @@ def build_landing(sites):
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Qrenzy Digital Solutions", "item": "https://www.qrenzy.com"},
                                                          {"@type": "ListItem", "position": 2, "name": "Website demos", "item": DOMAIN + "/"}]},
     ]}
+    import os
+    office = ""
+    if os.path.exists(os.path.join(os.path.dirname(__file__), "..", "demo", "assets", "office.jpg")):
+        office += '<img class="office rv" src="assets/office.jpg" width="1200" height="800" loading="lazy" alt="Qrenzy Digital Solutions office, Mundur, Thrissur">'
+    office += f'<iframe class="map rv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Qrenzy Digital Solutions, Mundur, Thrissur" src="https://maps.google.com/maps?q={MAPS_QUERY.replace(" ", "+")}&output=embed"></iframe>'
     title = f"{n} Website Demos for Local Businesses | Qrenzy Digital"
-    desc = f"Browse {n} ready-made website demos across 15 industries: clinics, real estate, restaurants, jewellery, IT and more. Websites from ₹5,000, live in 48 hours."
+    desc = f"Browse {n} ready-made website demos across 15 industries: clinics, real estate, restaurants, jewellery, IT and more. Websites from ₹5,000 (introductory pricing)."
     return f"""<!doctype html>
 <html lang="en-IN">
 <head>
@@ -124,16 +141,17 @@ def build_landing(sites):
 <main id="main">
 <section class="hero"><div class="container hgrid">
   <div>
-    <p class="kicker"><span></span>Website demos · by Qrenzy Digital Solutions</p>
-    <h1>Website Demos for <em>Every Local Business</em></h1>
-    <p class="lead">Browse {n} live, SEO-ready websites across 15 industries. Pick a design, see it on your phone, and get your own website live in 48 hours, from ₹5,000.</p>
-    <ul class="pills"><li><b>📱</b> Mobile-first</li><li><b>🔎</b> SEO + AEO</li><li><b>⚡</b> Live in 48 hrs</li><li><b>💬</b> WhatsApp leads</li><li><b>🇮🇳</b> Made in Kerala</li></ul>
-    <div class="hero-cta"><a class="btn btn-p" href="#contact">🚀 Get Your Free Demo</a><a class="btn btn-w" data-wa="Hi Qrenzy, I want a free demo for my business." href="#">💬 WhatsApp Us</a></div>
-    <p class="proof"><b>{n} demos</b> · 15 industries · Thrissur, Kerala</p>
+    <p class="kicker"><span></span>Website demos for local businesses</p>
+    <h1>Your Business Deserves a Website That <em>Wins Customers.</em></h1>
+    <p class="lead">Browse ready-made website designs for your industry. Choose a layout, customise it for your business, and launch with Qrenzy Digital Solutions.</p>
+    <ul class="pills"><li><b>📱</b> Mobile-first</li><li><b>🔎</b> SEO + AEO</li><li><b>⚡</b> Fast launch</li><li><b>💬</b> WhatsApp leads</li><li><b>🇮🇳</b> Made in Kerala</li></ul>
+    <div class="hero-cta"><a class="btn btn-p" href="#demos">Explore Website Demos →</a><a class="btn btn-w" data-wa="Hi Qrenzy, I would like to request a free demo for my business." data-ev="request_demo" href="#">💬 Request a Free Demo</a></div>
+    <p class="proof"><b>{n} Website Demos</b> · <b>15 Industries</b> · <b>Starting at ₹5,000*</b></p>
+    <p class="fine">*Introductory pricing, not a final quotation. Typical launch is 48 hours after we receive all content and approvals. Domain, GST and extras are quoted separately.</p>
   </div>
   <aside class="card-hero" aria-label="What every demo includes">
     <div class="ch-top"><h2>Demo Gallery</h2><span class="live">Live</span></div>
-    <div class="tiles"><div><small>LIVE DEMOS</small><b>{n}</b><i>↑ new this month</i></div><div><small>INDUSTRIES</small><b>15</b><i>↑ covered</i></div><div><small>GO-LIVE</small><b>48 hrs</b><i>↑ typical</i></div><div><small>WEBSITES FROM</small><b>₹5,000</b><i>↑ one-time</i></div></div>
+    <div class="tiles"><div><small>LIVE DEMOS</small><b>{n}</b><i>↑ new this month</i></div><div><small>INDUSTRIES</small><b>15</b><i>↑ covered</i></div><div><small>TYPICAL LAUNCH</small><b>48 hrs*</b><i>↑ after content &amp; approval</i></div><div><small>WEBSITES FROM</small><b>₹5,000*</b><i>↑ introductory</i></div></div>
     <ul class="bars"><li><span>SEO + FAQ schema<em>Included</em></span><div><u style="--c:#E31E24"></u></div></li><li><span>WhatsApp lead form<em>Included</em></span><div><u style="--c:#1f6feb"></u></div></li><li><span>Mobile-first speed<em>Included</em></span><div><u style="--c:#1faa59"></u></div></li><li><span>Maps, hours &amp; FAQ<em>Included</em></span><div><u style="--c:#f5a623"></u></div></li></ul>
     <p class="foot">Active: Kerala · India · Gulf</p>
   </aside>
@@ -142,7 +160,7 @@ def build_landing(sites):
 <div class="ticker" aria-hidden="true"><div class="track">{tick}{tick}</div></div>
 
 <section class="statrow"><div class="container"><ul>
-  <li><b>{n}</b><span>Live demos</span></li><li><b>15</b><span>Industries</span></li><li><b>48h</b><span>Typical go-live</span></li><li><b>₹5K</b><span>Websites from</span></li>
+  <li><b>{n}</b><span>Live demos</span></li><li><b>15</b><span>Industries</span></li><li><b>48h*</b><span>Typical launch, after content &amp; approval</span></li><li><b>₹5K*</b><span>Websites from (introductory)</span></li>
 </ul></div></section>
 
 <section id="demos" aria-labelledby="demos-h"><div class="container">
@@ -166,12 +184,13 @@ def build_landing(sites):
 
 <section class="warm" aria-labelledby="how-h"><div class="container">
   <div class="sec-head center"><span class="eyebrow">✦ How it works</span><h2 id="how-h">From demo to live website <em>in 3 steps</em></h2></div>
-  <ol class="steps"><li class="step rv"><h3>Pick a demo</h3><p>Choose the design closest to your business, or ask for a custom one.</p></li><li class="step rv"><h3>Share your details</h3><p>Send your logo, photos, services, prices and location on WhatsApp.</p></li><li class="step rv"><h3>Go live in 48 hours</h3><p>We customise, connect your domain and launch. You get all the files.</p></li></ol>
+  <ol class="steps"><li class="step rv"><h3>Pick a demo</h3><p>Choose the design closest to your business, or ask for a custom one.</p></li><li class="step rv"><h3>Share your details</h3><p>Send your logo, photos, services, prices and location on WhatsApp.</p></li><li class="step rv"><h3>Launch, typically in 48 hours</h3><p>After we receive all content and your approvals, we customise, connect your domain and launch. You get the files.</p></li></ol>
 </div></section>
 
 <section id="pricing" aria-labelledby="pr-h"><div class="container">
-  <div class="sec-head center"><span class="eyebrow">✦ Pricing</span><h2 id="pr-h">Simple <em>website packages</em></h2><p>Sample pricing. Monthly care plans from ₹1,000 cover updates, backups and support.</p></div>
+  <div class="sec-head center"><span class="eyebrow">✦ Pricing</span><h2 id="pr-h">Simple <em>website packages</em></h2><p>*Introductory pricing, not a final quotation. Optional monthly care plans from ₹1,000 cover updates, backups and support.</p></div>
   <div class="plans">{plans}</div>
+  <div class="pnotes"><div class="rv"><h3>✅ Included</h3><ul>{"".join(f"<li>{e(x)}</li>" for x in INCLUDED)}</ul></div><div class="rv"><h3>➕ Quoted separately</h3><ul>{"".join(f"<li>{e(x)}</li>" for x in EXCLUDED)}</ul></div><div class="rv"><h3>⏱ Timeline</h3><p>The 48-hour launch is typical for Starter and Business websites and starts after we receive all content (logo, photos, text, prices) and your approvals. Revisions, domain setup and larger websites usually take 5 to 10 days.</p></div></div>
 </div></section>
 
 <section class="warm" id="faq" aria-labelledby="faq-h"><div class="container">
@@ -192,15 +211,15 @@ def build_landing(sites):
     <div><div class="quick rv"><h3>Quick Contact</h3>
         <ul><li><i>{PHONE_SVG}</i><p><small>CALL / WHATSAPP</small><a data-tel href="#">+91 99057 00600</a></p></li>
         <li><i>✉️</i><p><small>EMAIL US</small><a href="mailto:info@qrenzy.com">info@qrenzy.com</a></p></li>
-        <li><i>📍</i><p><small>OFFICE ADDRESS</small><span>Thrissur, Kerala — 680541, India</span></p></li></ul></div>
-      <div class="hours rv"><h3>🕒 Working Hours</h3><dl><div><dt>Monday – Friday</dt><dd>9:30 AM – 7:30 PM</dd></div><div><dt>Saturday</dt><dd>9:30 AM – 6:00 PM</dd></div></dl></div></div>
+        <li><i>📍</i><p><small>OFFICE ADDRESS</small><span>{ADDRESS}, India</span><a class="maplink" href="{MAPS_LINK}" target="_blank" rel="noopener">Open in Google Maps →</a></p></li></ul></div>
+      <div class="hours rv"><h3>🕒 Working Hours</h3><dl><div><dt>Monday – Friday</dt><dd>9:30 AM – 7:30 PM</dd></div><div><dt>Saturday</dt><dd>9:30 AM – 6:00 PM</dd></div></dl></div>{office}</div>
   </div>
 </div></section>
 </main>
 
 <footer><div class="container">
   <div class="fgrid">
-    <div><img class="logo" src="logo.png" alt="Qrenzy Digital Solutions" width="150" height="52" style="filter:brightness(0) invert(1)"><p>Qrenzy Digital Solutions is an AI-powered digital marketing and website design agency in Thrissur, Kerala.</p></div>
+    <div><img class="logo" src="logo.png" alt="Qrenzy Digital Solutions" width="150" height="52" style="filter:brightness(0) invert(1)"><p>Qrenzy Digital Solutions is an AI-powered digital marketing and website design agency in Thrissur, Kerala.</p><p>{ADDRESS}</p></div>
     <div><h3>Explore</h3><ul><li><a href="#demos">All demos</a></li><li><a href="#industries">Industries</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div><h3>Contact</h3><ul><li><a data-tel href="#">+91 99057 00600</a></li><li><a href="mailto:info@qrenzy.com">info@qrenzy.com</a></li><li><a href="https://www.qrenzy.com" rel="noopener">www.qrenzy.com</a></li><li>Instagram @sajeeshvs313</li></ul></div>
   </div>
@@ -258,13 +277,17 @@ h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 22px;letter-spacing:-.04em}
 .pills li{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--warm);border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px}.pills b{font-size:13px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .proof{margin-top:26px;color:var(--grey);font-size:14.5px}.proof b{color:var(--ink)}
+.fine{margin-top:10px;color:var(--muted);font-size:12.5px;max-width:560px}
+.pnotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1040px;margin:34px auto 0}.pnotes>div{background:var(--warm);border:1px solid var(--line);border-radius:var(--r);padding:24px}.pnotes h3{font-size:17px;letter-spacing:-.02em;margin-bottom:10px}.pnotes li{font-size:14.5px;color:var(--grey);padding:5px 0;border-bottom:1px solid var(--line)}.pnotes li:last-child{border:0}.pnotes p{font-size:14.5px;color:var(--grey)}
+.maplink{display:block;margin-top:6px;font-size:14px;color:#fff;text-decoration:underline;text-underline-offset:3px}
+.map{width:100%;height:240px;border:0;border-radius:var(--r);margin-top:18px}.office{width:100%;height:auto;border-radius:var(--r);margin-top:18px}
 .card-hero{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow)}
 .ch-top{display:flex;justify-content:space-between;align-items:center}.ch-top h2{font-size:17px;margin:0;letter-spacing:-.01em}
 .live{font-size:13px;font-weight:700;color:#1faa59;display:inline-flex;align-items:center;gap:8px}.live:before{content:"";width:8px;height:8px;border-radius:50%;background:#1faa59}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
 .tiles div{background:#f6f6f4;border-radius:16px;padding:16px 18px}
 .tiles small{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted)}
-.tiles b{display:block;font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1.15;color:var(--ink)}.tiles i{font-style:normal;font-size:12px;color:#1faa59;font-weight:600}
+.tiles b{display:block;font-size:28px;font-weight:900;letter-spacing:-.03em;line-height:1.15;color:var(--ink)}.tiles i{font-style:normal;font-size:12px;color:#1faa59;font-weight:600}
 .bars{display:grid;gap:14px;margin-top:6px}
 .bars span{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px}.bars em{font-style:normal;color:var(--muted);font-weight:500}
 .bars div{height:6px;background:#eceae6;border-radius:6px;overflow:hidden}.bars u{display:block;height:100%;width:100%;background:var(--c);border-radius:6px}
@@ -276,7 +299,7 @@ h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 22px;letter-spacing:-.04em}
 .statrow{padding:clamp(30px,4vw,48px) 0}
 .statrow ul{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
 .statrow li{padding:18px 10px;border-right:1px solid var(--line)}.statrow li:last-child{border:0}
-.statrow b{display:block;font-size:clamp(40px,6vw,64px);font-weight:900;letter-spacing:-.04em;color:var(--ink);line-height:1.1}.statrow span{color:var(--muted);font-weight:600;font-size:15px}
+.statrow b{display:block;font-size:clamp(40px,6vw,64px);font-weight:900;letter-spacing:-.04em;color:var(--ink);line-height:1.1}.statrow span{color:var(--muted);font-weight:600;font-size:14.5px;display:block;max-width:190px;margin-inline:auto}
 /* demos grid */
 .tools{display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -288,18 +311,20 @@ h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 22px;letter-spacing:-.04em}
 .search svg{width:18px;height:18px;color:var(--muted);flex:none}.search input{border:0;outline:0;font:500 15px var(--font);width:100%;background:transparent;color:var(--ink)}
 .count{font-size:13.5px;color:var(--muted);margin:14px 2px 18px;font-weight:500}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.dcard a{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
-.dcard a:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(227,30,36,.45)}
+.dcard article{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.dcard article:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(227,30,36,.45)}
+.cover{display:flex;flex-direction:column;flex:1}
+.acts{padding:0 22px 22px;display:grid;gap:10px}
+.acts .view{display:flex;justify-content:center;align-items:center;gap:8px;min-height:46px;border-radius:999px;background:var(--red);color:#fff;font-weight:800;font-size:14.5px;transition:.2s}.acts .view:hover{background:var(--red-d)}.acts .view svg{width:16px;height:16px}
+.acts .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.acts .two a{display:flex;justify-content:center;align-items:center;text-align:center;min-height:42px;padding:6px 8px;border:1px solid var(--line);border-radius:10px;font-weight:700;font-size:13px;line-height:1.25;transition:.15s}.acts .two a:hover{border-color:var(--red);color:var(--red)}
 .shot{background:#f1f1f3;border-bottom:1px solid var(--line);overflow:hidden}
 .shot .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#f6f6f4}
 .shot .bar i{width:9px;height:9px;border-radius:50%;background:#d4d4d9}.shot .bar i:nth-child(1){background:#ff5f56}.shot .bar i:nth-child(2){background:#ffbd2e}.shot .bar i:nth-child(3){background:#27c93f}
 .shot .bar span{margin-left:8px;font-size:11.5px;color:var(--muted);background:#fff;border-radius:999px;padding:2px 12px}
-.shot img{width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;object-position:top;transition:transform .5s}.dcard a:hover .shot img{transform:scale(1.04)}
+.shot img{width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;object-position:top;transition:transform .5s}.dcard article:hover .shot img{transform:scale(1.04)}
 .meta{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .tag{align-self:flex-start;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,#fff);color:color-mix(in srgb,var(--c) 70%,#000)}
 .meta h3{font-size:20px;letter-spacing:-.02em}.meta p{font-size:14.5px;color:var(--muted)}
-.go{margin-top:auto;padding-top:6px;font-weight:800;font-size:14.5px;color:var(--red);display:inline-flex;align-items:center;gap:8px}
-.go svg{width:17px;height:17px;transition:transform .2s}.dcard a:hover .go svg{transform:translateX(5px)}
 .dcard[hidden]{display:none}
 .empty{text-align:center;color:var(--muted);padding:40px 0}.empty a{color:var(--red);font-weight:700;text-decoration:underline}
 /* industries */
@@ -321,7 +346,7 @@ h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 22px;letter-spacing:-.04em}
 .ptag{position:absolute;top:-14px;left:28px;background:var(--red);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.1em;padding:5px 14px;border-radius:999px}
 .plan h3{font-size:22px}.plan .for{color:var(--muted);font-size:14px}
 .price{font-size:50px;font-weight:900;letter-spacing:-.04em;margin:18px 0 4px;line-height:1}.price sup{font-size:.45em;vertical-align:top;position:relative;top:.35em;margin-right:2px}
-.price small{font:500 14px var(--font);color:var(--muted);letter-spacing:0}
+.price small{font:500 13px var(--font);color:var(--muted);letter-spacing:0}
 .plan ul{margin:22px 0 28px;display:grid;gap:11px;font-size:15px;flex:1}.plan li{display:flex;gap:10px}.plan li:before{content:"✓";color:var(--red);font-weight:900}
 .faq{max-width:820px;margin-inline:auto;display:grid;gap:12px}
 details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 22px;transition:.2s}
@@ -358,14 +383,18 @@ html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,tra
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}html.js .rv{opacity:1;transform:none;transition:none}.dcard a,.shot img{transition:none}.track{animation:none}}
 @media(max-width:1020px){.menu,.nav-cta .tl,.sep{display:none}.burger{display:grid}
  .menu.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:76px;background:#fff;padding:14px 20px 22px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.menu.open a{font-size:16px}
- .hgrid,.cgrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.incs{grid-template-columns:1fr 1fr}.inds{grid-template-columns:repeat(3,1fr)}.plan.pop{transform:none}}
+ .hgrid,.cgrid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.incs{grid-template-columns:1fr 1fr}.inds{grid-template-columns:repeat(3,1fr)}.plan.pop{transform:none}.pnotes{grid-template-columns:1fr}}
 @media(max-width:680px){.grid,.incs,.steps,.plans,.fgrid,.two{grid-template-columns:1fr}.inds{grid-template-columns:1fr 1fr}.statrow ul{grid-template-columns:1fr 1fr}.statrow li:nth-child(2){border-right:0}.statrow li:nth-child(-n+2){border-bottom:1px solid var(--line)}
  .mbar{display:flex}footer{padding-bottom:120px}.hero-cta .btn{flex:1 1 100%}.tools{flex-direction:column;align-items:stretch}.search{width:100%}}
 """
 
 JS = r"""
 (function(){var d=document,r=d.documentElement;r.classList.add('js');var NUM='919905700600';
+var GA4='';/* paste your GA4 measurement ID here, e.g. G-XXXXXXXXXX */
 var wa=function(t){return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(t)};
+if(GA4){var gs=d.createElement('script');gs.async=1;gs.src='https://www.googletagmanager.com/gtag/js?id='+GA4;d.head.appendChild(gs);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA4)}
+var ev=function(n,p){if(window.gtag)gtag('event',n,p||{})};
+d.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var n=a.getAttribute('data-ev');if(n)ev(n,{demo:a.getAttribute('data-demo')||''});else if(a.hasAttribute('data-wa'))ev('whatsapp_click',{});else if(a.hasAttribute('data-tel'))ev('call_click',{})});
 d.querySelectorAll('[data-wa]').forEach(function(a){a.href=wa(a.getAttribute('data-wa'));a.target='_blank';a.rel='noopener'});
 d.querySelectorAll('[data-tel]').forEach(function(a){a.href='tel:+'+NUM;if(!a.classList.contains('c'))a.textContent='+91 99057 00600'});
 d.getElementById('yr').textContent=new Date().getFullYear();
@@ -380,6 +409,6 @@ cnt.textContent=(n===cards.length?'Showing all '+n+' demos':'Showing '+n+' of '+
 chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.classList.remove('on')});c.classList.add('on');f=c.dataset.f;apply()})});
 q.addEventListener('input',apply);
 var form=d.getElementById('enq');form.addEventListener('submit',function(e){e.preventDefault();var v=new FormData(form);
-var t='Hi Qrenzy, I would like a free website demo.\nName: '+v.get('name')+'\nPhone: '+v.get('phone')+'\nIndustry: '+v.get('ind');if(v.get('msg'))t+='\nMessage: '+v.get('msg');window.open(wa(t),'_blank','noopener')});
+var t='Hi Qrenzy, I would like a free website demo.\nName: '+v.get('name')+'\nPhone: '+v.get('phone')+'\nIndustry: '+v.get('ind');if(v.get('msg'))t+='\nMessage: '+v.get('msg');ev('form_submit_whatsapp',{industry:v.get('ind')});window.open(wa(t),'_blank','noopener')});
 })();
 """
