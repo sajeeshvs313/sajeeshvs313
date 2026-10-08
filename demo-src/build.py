@@ -2,7 +2,7 @@ import os, sys, importlib, shutil
 sys.path.insert(0, os.path.dirname(__file__))
 from template import build_page
 OUT = os.path.join(os.path.dirname(__file__), "..", "demo")
-mods = [m for m in ("data1", "data2", "data3") if os.path.exists(os.path.join(os.path.dirname(__file__), m + ".py"))]
+mods = [m for m in ("data1", "data2", "data3", "data4") if os.path.exists(os.path.join(os.path.dirname(__file__), m + ".py"))]
 sites = []
 for m in mods:
     sites += importlib.import_module(m).SITES
@@ -24,7 +24,7 @@ if not only:
     open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8").write(
         f"User-agent: *\nAllow: /\n\n# Demo pages use sample content and carry a noindex tag.\nSitemap: {DOMAIN}/sitemap.xml\n")
     lines = ["# Qrenzy Digital Solutions: Website Demos", "",
-             "> 21 ready-made website demos for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com). "
+             f"> {len(sites)} ready-made website demos across 15 industries for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com), Thrissur. "
              "Websites start at ₹5,000 and go live in about 48 hours. Contact: +91 99057 00600 (WhatsApp).", "", "## Demos", ""]
     for s in sites:
         lines.append(f"- [{s['cat']}: {s['name']}]({DOMAIN}/{s['slug']}/): {s['desc']}")

@@ -1,6 +1,6 @@
 # Qrenzy Digital Solutions: Website Demos
 
-> 21 ready-made website demos for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com). Websites start at ₹5,000 and go live in about 48 hours. Contact: +91 99057 00600 (WhatsApp).
+> 30 ready-made website demos across 15 industries for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com), Thrissur. Websites start at ₹5,000 and go live in about 48 hours. Contact: +91 99057 00600 (WhatsApp).
 
 ## Demos
 
@@ -25,3 +25,12 @@
 - [CA, Tax & Accounting: Ledger & Co. Chartered Accountants](https://demo.qrenzy.com/accounting/): Ledger & Co. in Kochi: GST, income tax, company registration, audit and bookkeeping for startups and SMEs. Free first consultation.
 - [Pet Care & Grooming: PawsPlus Pet Care](https://demo.qrenzy.com/pet-care/): PawsPlus Pet Care in Kochi: dog and cat grooming, vet consultation, vaccination, boarding and daycare. Grooming from ₹799. Book home service or a visit.
 - [Solar Installation: SunBright Solar](https://demo.qrenzy.com/solar/): SunBright Solar in Kochi: rooftop solar for homes and businesses from ₹60,000/kW with subsidy support and 25-year panel warranty. Free quote.
+- [Jewellery & Retail: Aurelia Jewellers](https://demo.qrenzy.com/jewellery/): Aurelia Jewellers in Thrissur: BIS hallmarked gold, diamond and bridal jewellery with transparent making charges, buyback and easy gold savings plan.
+- [Tourism & Travel: Wanderlust Holidays](https://demo.qrenzy.com/travel/): Wanderlust Holidays in Kochi: Kerala tour packages, Dubai and Europe holidays, honeymoon trips and flight, visa and hotel bookings from ₹7,999.
+- [Manufacturing: PrecisionWorks Industries](https://demo.qrenzy.com/manufacturing/): PrecisionWorks Industries in Angamaly: CNC machining, metal fabrication and sheet metal for OEMs with ISO 9001 quality, quick quotes and on-time delivery.
+- [IT & Software: NexaCode Technologies](https://demo.qrenzy.com/it-software/): NexaCode Technologies in Kochi: custom software, web and mobile app development, cloud and AI solutions for startups and enterprises. Get a free consultation.
+- [Fashion & Lifestyle: Maison Vela Boutique](https://demo.qrenzy.com/fashion/): Maison Vela Boutique in Kochi: designer sarees, kurtis, bridal wear and custom tailoring with free alterations. Shop online on WhatsApp or visit the store.
+- [E-commerce Store: Kerala Spice Co.](https://demo.qrenzy.com/ecommerce/): Kerala Spice Co.: pure cardamom, pepper, cinnamon and spice gift boxes direct from Idukki farms. Free shipping above ₹499 and easy 7-day returns.
+- [Corporate & B2B: Apex Business Solutions](https://demo.qrenzy.com/corporate-b2b/): Apex Business Solutions in Kochi: B2B consulting, HR and payroll, business setup and corporate outsourcing for growing companies. Request a proposal today.
+- [Finance & Insurance: SecureWealth Advisors](https://demo.qrenzy.com/finance-insurance/): SecureWealth Advisors in Kochi: life, health and motor insurance, mutual funds, SIPs and loan assistance. Free policy review and personalised financial plan.
+- [Legal & Professional Services: Justicia Law Chambers](https://demo.qrenzy.com/legal/): Justicia Law Chambers in Kochi: property, family, corporate and cheque-bounce legal services by experienced advocates. Book a confidential consultation.
