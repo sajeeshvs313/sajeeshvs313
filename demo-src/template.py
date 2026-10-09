@@ -2,6 +2,7 @@
 import html, json
 
 DOMAIN = "https://demo.qrenzy.com"
+GA4_ID = "G-9ZYRDQ7B4V"  # Qrenzy demo tracking; leave "" on a real client site
 INDEXABLE = False  # demos use sample content; flip to True only on a real client site
 
 FONTS = {
@@ -371,7 +372,7 @@ def build_page(s):
         extra_label = lab
         extra = f'<div><label for="f-extra">{e(lab)}</label><input id="f-extra" name="extra" type="{typ}" placeholder="{e(ph)}"></div>'
     svc_links = "".join(f'<li><a href="#services">{e(t)}</a></li>' for _, t, _ in s["services"][:5])
-    cfg = json.dumps({"slug": s["slug"], "demoTag": f"Sent from demo: {s['name']} ({url})", "ga4": "", "name": s["name"], "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": s["map"],
+    cfg = json.dumps({"slug": s["slug"], "demoTag": f"Sent from demo: {s['name']} ({url})", "ga4": GA4_ID, "name": s["name"], "whatsapp": "919905700600", "phoneDisplay": "+91 99057 00600", "mapQuery": s["map"],
                       "intent": s["intent"], "selLabel": s["sel"][0], "extraLabel": extra_label}, ensure_ascii=False)
     body_font, head_font = ft[1], ft[2]
     og_img = ""
@@ -547,7 +548,7 @@ def build_page(s):
       <div><h3>Company</h3><ul><li><a href="#pricing">Pricing</a></li><li><a href="#work">{e(s['work_nav'])}</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div><h3>Contact</h3><ul><li>{e(s['addr'])}, {e(s.get('city','Kochi'))}</li><li><a data-tel href="#">+91 99057 00600</a></li><li>{e(s['hours_txt'])}</li></ul></div>
     </div>
-    <div class="fbar"><span>© <span id="yr"></span> {e(s['name'])}. Sample content for demo.</span><span>Website by <a href="https://www.qrenzy.com" rel="noopener" target="_blank">Qrenzy Digital Solutions</a></span></div>
+    <div class="fbar"><span>© <span id="yr"></span> {e(s['name'])}. Sample content for demo. This site uses Google Analytics to measure visits.</span><span>Website by <a href="https://www.qrenzy.com" rel="noopener" target="_blank">Qrenzy Digital Solutions</a></span></div>
   </div>
 </footer>
 
