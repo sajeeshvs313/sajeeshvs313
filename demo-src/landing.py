@@ -18,7 +18,7 @@ ADDRESS = "Medical College Road, Kodankandan Jn, Deepti Nagar, Mundur P.O., Thri
 MAPS_QUERY = "Qrenzy Digital Solutions, Medical College Road, Kodankandan Junction, Deepti Nagar, Mundur, Thrissur 680541"
 MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=" + MAPS_QUERY.replace(" ", "+").replace(",", "%2C")
 INCLUDED = ["Domain name for the first year (.com or .in)", "Website design and setup on managed hosting (first year)", "SSL certificate and mobile-first layout", "On-page SEO and structured data as per package", "WhatsApp enquiry form and Google Maps embed", "Handover of your website files"]
-EXCLUDED = ["Domain and hosting renewal: ₹5,000 per year, from the second year", "Optional care plan: ₹500 per month for up to 8 hours of updates and support, when required", "Business email (Zoho Mail): ₹500 for 1 mailbox with 5 GB. Extra mailboxes: 5 GB ₹500, 10 GB ₹1,800 (billing period stated in your quotation)", "Professional photo or video shoot, if you do not have your own photos", "Extensive content writing beyond the details you supply", "Paid advertising budgets"]
+EXCLUDED = ["Domain and hosting renewal: ₹5,000 per year, from the second year", "Optional care plan: ₹1,000 per month for up to 8 hours of updates and support, when required", "Business email (Zoho Mail): one-time setup ₹500 per mailbox with 5 GB. 10 GB mailbox: ₹1,800, renewed yearly", "Product or shop photography by us: available at an extra charge, quoted on request", "Extensive content writing beyond the details you supply", "Paid advertising budgets"]
 INDUSTRIES = [
     ("💎", "Jewellery & Retail", "jewellery"), ("🏥", "Healthcare & Clinics", "clinic"), ("🏫", "Education & Coaching", "tuition"),
     ("🏗️", "Real Estate", "real-estate"), ("🍽️", "Restaurants & F&B", "restaurant"), ("✈️", "Tourism & Hospitality", "travel"),
@@ -46,10 +46,11 @@ def build_landing(sites):
     n = len(sites)
     faq_items = [
         ("What is demo.qrenzy.com?", f"demo.qrenzy.com is a showcase of {n} ready-made website designs by Qrenzy Digital Solutions, covering 15 industries such as jewellery, healthcare, real estate, restaurants, manufacturing, IT, fashion, e-commerce, automotive and finance. Each demo is a fully working sample you can open on your phone."),
-        ("How much does a business website cost in Kerala?", "Websites from Qrenzy Digital Solutions start at ₹5,000 (introductory pricing, not a final quotation). This includes the website, a domain name for the first year and managed hosting for the first year. From the second year, domain and hosting renewal is ₹5,000 a year. An optional care plan is ₹500 a month for up to 8 hours of updates and support. GST is not charged."),
-        ("What is included in the website price?", "Every package includes design and setup, a domain name and managed hosting for the first year, SSL, a mobile-first layout, on-page SEO and structured data as per the package, a WhatsApp enquiry form, a Google Maps embed and handover of your website files. Business email, a photo or video shoot, extensive content writing and ad spend are separate."),
-        ("What is the yearly renewal cost?", "From the second year, domain and hosting renewal is ₹5,000 per year. An optional care plan for updates and support is ₹500 per month, covering up to 8 hours a month, when required."),
-        ("Do you provide business email?", "Yes. We set up business email on Zoho Mail: ₹500 for 1 mailbox with 5 GB. Additional mailboxes are ₹500 for 5 GB and ₹1,800 for 10 GB. The billing period is stated in your quotation."),
+        ("How much does a business website cost in Kerala?", "Websites from Qrenzy Digital Solutions start at ₹5,000 (introductory pricing, not a final quotation). This includes the website, a domain name for the first year and managed hosting for the first year. From the second year, domain and hosting renewal is ₹5,000 a year. An optional care plan is ₹1,000 a month for up to 8 hours of updates and support."),
+        ("What is included in the website price?", "Every package includes design and setup, a domain name and managed hosting for the first year, SSL, a mobile-first layout, on-page SEO and structured data as per the package, a WhatsApp enquiry form, a Google Maps embed and handover of your website files. Business email, product or shop photography, extensive content writing and ad spend are separate."),
+        ("What is the yearly renewal cost?", "From the second year, domain and hosting renewal is ₹5,000 per year. An optional care plan for updates and support is ₹1,000 per month, covering up to 8 hours a month, when required."),
+        ("Do you offer product or shop photography?", "Yes. We can photograph your products or shop for your website at an extra charge, quoted on request. If you already have good photos, you can send them and we will use those at no extra cost."),
+        ("Do you provide business email?", "Yes. We set up business email on Zoho Mail with a one-time setup charge of ₹500 per mailbox with 5 GB. A 10 GB mailbox is ₹1,800 and renews yearly."),
         ("How long does it take to build a website?", "A demo-based website typically launches in about 48 hours after we receive all required content (logo, photos, services, prices and contact details) and your approvals. Revisions, domain setup and larger websites can take longer, usually 5 to 10 days."),
         ("Will my website show up on Google?", "Every site is built with SEO and AEO foundations: a unique title and description, structured data (LocalBusiness, FAQ), mobile-first speed and clear question-and-answer content that search engines and AI assistants can read. Rankings also depend on competition, content and your Google Business Profile."),
         ("Can you customise a demo for my business?", "Yes. Pick any demo, send us your business name, services, prices, photos and location, and we will customise colours, content and structured data for your business."),
@@ -94,7 +95,7 @@ def build_landing(sites):
          "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "19:30"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "18:00"}],
          "areaServed": ["India", "Oman", "United Arab Emirates", "Bahrain"],
          "description": "AI-powered digital marketing, SEO and website design agency in Thrissur, Kerala.",
-         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business website design"}, "priceCurrency": "INR", "price": "5000", "description": "Introductory starting price. Includes first-year domain and hosting. Renewal, email and extras are quoted separately. GST is not charged."}]},
+         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business website design"}, "priceCurrency": "INR", "price": "5000", "description": "Introductory starting price. Includes first-year domain and hosting. Renewal, email and extras are quoted separately."}]},
         {"@type": "WebSite", "@id": DOMAIN + "/#website", "url": DOMAIN + "/", "name": "Qrenzy Website Demos", "publisher": {"@id": "https://www.qrenzy.com/#org"}, "inLanguage": "en-IN"},
         {"@type": "CollectionPage", "@id": DOMAIN + "/#page", "url": DOMAIN + "/", "name": "Website demos for local businesses", "isPartOf": {"@id": DOMAIN + "/#website"},
          "mainEntity": {"@type": "ItemList", "numberOfItems": n, "itemListElement": items}},
@@ -149,7 +150,7 @@ def build_landing(sites):
     <ul class="pills"><li><b>📱</b> Mobile-first</li><li><b>🔎</b> SEO + AEO</li><li><b>⚡</b> Fast launch</li><li><b>💬</b> WhatsApp leads</li><li><b>🇮🇳</b> Made in Kerala</li></ul>
     <div class="hero-cta"><a class="btn btn-p" href="#demos">Explore Website Demos →</a><a class="btn btn-w" data-wa="Hi Qrenzy, I would like to request a free demo for my business." data-ev="request_demo" href="#">💬 Request a Free Demo</a></div>
     <p class="proof"><b>{n} Website Demos</b> · <b>15 Industries</b> · <b>Starting at ₹5,000*</b></p>
-    <p class="fine">*Introductory pricing, not a final quotation. Includes the first-year domain and hosting. Typical launch is 48 hours after we receive all content and approvals. Renewal, email and extras are quoted separately. GST is not charged.</p>
+    <p class="fine">*Introductory pricing, not a final quotation. Includes the first-year domain and hosting. Typical launch is 48 hours after we receive all content and approvals. Renewal, email and extras are quoted separately.</p>
   </div>
   <aside class="card-hero" aria-label="What every demo includes">
     <div class="ch-top"><h2>Demo Gallery</h2><span class="live">Live</span></div>
@@ -190,10 +191,10 @@ def build_landing(sites):
 </div></section>
 
 <section id="pricing" aria-labelledby="pr-h"><div class="container">
-  <div class="sec-head center"><span class="eyebrow">✦ Pricing</span><h2 id="pr-h">Simple <em>website packages</em></h2><p>*Introductory pricing, not a final quotation. Includes the first-year domain and hosting. Optional care plan: ₹500 a month for up to 8 hours of updates and support.</p></div>
+  <div class="sec-head center"><span class="eyebrow">✦ Pricing</span><h2 id="pr-h">Simple <em>website packages</em></h2><p>*Introductory pricing, not a final quotation. Includes the first-year domain and hosting. Optional care plan: ₹1,000 a month for up to 8 hours of updates and support.</p></div>
   <div class="plans">{plans}</div>
   <div class="pnotes"><div class="rv"><h3>✅ Included</h3><ul>{"".join(f"<li>{e(x)}</li>" for x in INCLUDED)}</ul></div><div class="rv"><h3>➕ Quoted separately</h3><ul>{"".join(f"<li>{e(x)}</li>" for x in EXCLUDED)}</ul></div><div class="rv"><h3>⏱ Timeline</h3><p>The 48-hour launch is typical for Starter and Business websites and starts after we receive all content (logo, photos, text, prices) and your approvals. Revisions, domain setup and larger websites usually take 5 to 10 days.</p></div></div>
-  <p class="fine" style="text-align:center;max-width:none;margin-top:18px">All prices are in Indian rupees. GST is not charged.</p>
+  <p class="fine" style="text-align:center;max-width:none;margin-top:18px">All prices are in Indian rupees.</p>
 </div></section>
 
 <section class="warm" id="faq" aria-labelledby="faq-h"><div class="container">
