@@ -62,10 +62,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 <script>
 'use strict';
 const KEY = 'home-build-ledger-v1';
-const DEF_CATS = ['Cement','Steel (TMT bars)','Sand / M-sand / Metal','Bricks / Blocks','Tiles / Flooring','Electrical','Plumbing / Sanitary','Carpentry / Doors & Windows','Painting','Furniture / Interiors','Plan / Licence / Fees','Transport / Loading','Daily wages','Food / Tea','Others'];
+const DEF_CATS = ['Cement','Steel (TMT bars)','Sand / M-sand / Metal','Bricks / Blocks','Tiles / Flooring','Electrical','Plumbing / Sanitary','Carpentry / Doors & Windows','Painting','Furniture / Interiors','Plan / Licence / Fees','Transport / Loading','Daily wages','Food / Tea','Loan interest / Bank charges','Others'];
 const DEF_SLABS = ['Foundation','Basement','Lintel','Roof slab','Plastering','Flooring','Finishing'];
 const CON = 'Contractor (slab payments)';
-const TABS = [['dash','Dashboard'],['exp','Expenses'],['con','Contractor'],['bud','Budget'],['rep','Reports']];
+const TABS = [['dash','Dashboard'],['exp','Expenses'],['con','Contractor'],['loan','Loan'],['bud','Budget'],['rep','Reports']];
 const MODES = ['Cash','UPI / GPay','Bank transfer','Cheque','Credit / Due'];
 const uid = () => Math.random().toString(36).slice(2, 10);
 const today = () => new Date().toISOString().slice(0, 10);
@@ -74,11 +74,12 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const $ = s => document.querySelector(s);
 
 function fresh() {
-  return { project: { name: 'My Home', budget: 0 }, cats: DEF_CATS.slice(), budgets: {}, exp: [],
+  return { project: { name: 'My Home', budget: 0 }, cats: DEF_CATS.slice(), budgets: {}, exp: [], loan: { bank: '', sanction: 0, rate: 0, years: 0, disb: [] },
     con: { name: '', phone: '', slabs: DEF_SLABS.map(n => ({ id: uid(), name: n, amount: 0, pay: [] })) } };
 }
 let S, tab = 'dash', filt = { cat: '', q: '' };
-try { S = JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { S = fresh(); }
+try { S = { ...fresh(), ...JSON.parse(localStorage.getItem(KEY)) }; } catch { S = fresh(); }
+if (!S.cats.includes('Loan interest / Bank charges')) S.cats.push('Loan interest / Bank charges');
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
 
 /* ---------- calculations ---------- */
@@ -99,6 +100,12 @@ function byMonth() {
   S.con.slabs.forEach(s => s.pay.forEach(p => { const k = p.date.slice(0, 7); m[k] = (m[k] || 0) + p.amount; }));
   return Object.entries(m).sort();
 }
+const loanGot = () => S.loan.disb.reduce((a, d) => a + d.amount, 0);
+function emi() {
+  const L = S.loan, r = L.rate / 1200, n = L.years * 12;
+  if (!L.sanction || !n) return 0;
+  return r ? L.sanction * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : L.sanction / n;
+}
 const pct = (a, b) => b > 0 ? Math.min(100, a / b * 100) : 0;
 
 /* ---------- views ---------- */
@@ -111,6 +118,9 @@ function vDash() {
     <div class="card stat"><small>Paid to contractor</small><b>${inr(conPaid())}</b></div>
     <div class="card stat"><small>Contractor balance</small><b class="bad">${inr(Math.max(0, conTotal() - conPaid()))}</b></div>
     <div class="card stat"><small>Own expenses</small><b>${inr(ownTotal())}</b></div>
+    ${S.loan.sanction ? `<div class="card stat"><small>Loan received from bank</small><b>${inr(loanGot())}</b></div>
+    <div class="card stat"><small>Loan yet to be released</small><b>${inr(Math.max(0, S.loan.sanction - loanGot()))}</b></div>
+    <div class="card stat"><small>Paid from own pocket</small><b>${inr(Math.max(0, g - loanGot()))}</b></div>` : ''}
   </div>
   ${b ? `<div class="card"><div class="row"><span>Budget used</span><b style="text-align:right">${Math.round(g / b * 100)}%</b></div><div class="bar"><i class="${g > b ? 'over' : ''}" style="width:${pct(g, b)}%"></i></div></div>` : '<div class="card muted">Set your total budget from ⚙ Settings at the top.</div>'}
   <h2>Spending by category</h2>
@@ -145,6 +155,25 @@ function vCon() {
   </div>`; }).join('')}`;
 }
 
+function vLoan() {
+  const L = S.loan, got = loanGot(), g = grand(), e = emi(), n = L.years * 12;
+  return `<div class="card"><div class="row"><b>${L.bank ? esc(L.bank) : 'Bank loan'}</b><button class="ghost" data-a="editLoan">${L.sanction ? 'Edit loan' : 'Add loan details'}</button></div>
+  ${L.sanction ? `<p class="muted" style="margin:6px 0 0">Sanctioned ${inr(L.sanction)} · ${L.rate}% p.a. · ${L.years} years</p>` : '<p class="muted">Enter the sanctioned amount, interest rate and tenure to see your EMI.</p>'}</div>
+  ${L.sanction ? `<div class="grid">
+    <div class="card stat"><small>Monthly EMI</small><b>${inr(e)}</b></div>
+    <div class="card stat"><small>Total interest over tenure</small><b>${inr(e * n - L.sanction)}</b></div>
+    <div class="card stat"><small>Total payable to bank</small><b>${inr(e * n)}</b></div>
+  </div>
+  <div class="grid">
+    <div class="card stat"><small>Released by bank</small><b class="ok">${inr(got)}</b></div>
+    <div class="card stat"><small>Yet to be released</small><b>${inr(L.sanction - got)}</b></div>
+    <div class="card stat"><small>${got >= g ? 'Loan money unspent' : 'Paid from own pocket'}</small><b class="${got >= g ? 'ok' : 'bad'}">${inr(Math.abs(got - g))}</b></div>
+  </div>` : ''}
+  <div class="row" style="margin-bottom:8px"><h2 style="margin:0;flex:1">Loan released by bank</h2><button data-a="addDisb">+ Add release</button></div>
+  <div class="card">${L.disb.slice().sort((a, b) => b.date.localeCompare(a.date)).map(x => `<div class="item"><span>${x.date}${x.note ? ' · ' + esc(x.note) : ''}</span><span><b>${inr(x.amount)}</b> <button class="link" data-a="delDisb" data-id="${x.id}" aria-label="Delete release">✕</button></span></div>`).join('') || '<span class="muted">Banks usually release the loan in stages (foundation, lintel, roof and so on). Add each release here when it reaches your account.</span>'}</div>
+  <p class="muted">Record interest and bank charges you pay during construction under the "Loan interest / Bank charges" category in Expenses.</p>`;
+}
+
 function vBud() {
   const cats = byCat(), all = S.cats.concat(cats[CON] !== undefined ? [CON] : []);
   return `<p class="muted">Set a budget for each category to see how much is spent and what is left.</p>
@@ -162,12 +191,12 @@ function vRep() {
   <div class="card"><button class="link" data-a="reset">Erase all data</button></div>`;
 }
 
-const VIEWS = { dash: vDash, exp: vExp, con: vCon, bud: vBud, rep: vRep };
+const VIEWS = { dash: vDash, exp: vExp, con: vCon, loan: vLoan, bud: vBud, rep: vRep };
 function render() {
   $('#title').textContent = '🏠 ' + (S.project.name || 'My Home');
   $('#nav').innerHTML = TABS.map(([k, n]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-id="${k}">${n}</button>`).join('');
   $('#main').innerHTML = VIEWS[tab]();
-  $('#fab').hidden = tab === 'con' || tab === 'rep';
+  $('#fab').hidden = tab === 'con' || tab === 'rep' || tab === 'loan';
 }
 
 /* ---------- dialogs ---------- */
@@ -245,6 +274,9 @@ const ACT = {
   delSlab: t => { const s = slab(t.dataset.s); sure(`Remove "${s.name}"? Its payments will be deleted too.`, () => { S.con.slabs = S.con.slabs.filter(x => x !== s); save(); render(); }); },
   addPay: t => { const s = slab(t.dataset.s); ask(`${esc(s.name)} - payment made`, fld('date', 'Date', today(), 'date', 'required') + fld('amount', 'Amount (₹)', '', 'number', 'required min="1" step="any" inputmode="decimal"') + fld('note', 'Note (e.g. advance, cheque no.)'), v => { if (!num(v.amount)) return false; s.pay.push({ id: uid(), date: v.date, amount: num(v.amount), note: v.note }); }); },
   delPay: t => { const s = slab(t.dataset.s); sure('Delete this payment?', () => { s.pay = s.pay.filter(p => p.id !== t.dataset.id); save(); render(); }); },
+  editLoan: () => { const L = S.loan; ask('Bank loan', fld('bank', 'Bank name', L.bank) + fld('sanction', 'Sanctioned amount (₹)', L.sanction || '', 'number', 'min="0" inputmode="numeric"') + fld('rate', 'Interest rate (% per year)', L.rate || '', 'number', 'min="0" step="any" inputmode="decimal"') + fld('years', 'Tenure (years)', L.years || '', 'number', 'min="0" step="any" inputmode="decimal"'), v => { Object.assign(L, { bank: v.bank, sanction: num(v.sanction), rate: num(v.rate), years: num(v.years) }); }); },
+  addDisb: () => ask('Loan released by bank', fld('date', 'Date', today(), 'date', 'required') + fld('amount', 'Amount (₹)', '', 'number', 'required min="1" step="any" inputmode="decimal"') + fld('note', 'Stage / note (e.g. foundation stage)'), v => { if (!num(v.amount)) return false; S.loan.disb.push({ id: uid(), date: v.date, amount: num(v.amount), note: v.note }); }),
+  delDisb: t => sure('Delete this release?', () => { S.loan.disb = S.loan.disb.filter(x => x.id !== t.dataset.id); save(); render(); }),
   csv: () => {
     const rows = [['Date', 'Category', 'Description', 'Amount', 'Paid to', 'Mode']];
     S.exp.forEach(e => rows.push([e.date, e.cat, e.desc, e.amount, e.payee, e.mode]));
@@ -258,6 +290,7 @@ const ACT = {
       const d = JSON.parse(v.t);
       if (!d || !Array.isArray(d.exp) || !d.con || !Array.isArray(d.con.slabs) || !Array.isArray(d.cats)) throw 0;
       S = { ...fresh(), ...d };
+      S.loan = { ...fresh().loan, ...S.loan };
     } catch { $('#err').textContent = 'This is not a valid backup.'; return false; }
   }),
   reset: () => sure('Erase all data? This cannot be undone.', () => { S = fresh(); save(); render(); })
