@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Demo pages use sample content and carry a noindex tag.
+# Demo pages use sample content and carry a noindex tag. Industry guides under /websites-for/ are indexable.
 Sitemap: https://demo.qrenzy.com/sitemap.xml

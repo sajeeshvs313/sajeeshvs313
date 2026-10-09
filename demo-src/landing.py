@@ -1,6 +1,9 @@
 """demo.qrenzy.com landing page in the qrenzy.com visual style. SEO + AEO ready."""
 import json
 from template import DOMAIN, WA_SVG, ARROW, PHONE_SVG, e
+import ind2, ind3  # noqa: F401  (registers industry entries)
+from ind1 import INDS as _INDS
+IND_URL = {i["demo"]: i["url"] for i in _INDS}
 
 GROUPS = [
     ("health", "Health & Fitness", ["gym", "clinic", "dental", "yoga", "pet-care"]),
@@ -78,7 +81,7 @@ def build_landing(sites):
             f'<a data-wa="{rc}" data-ev="request_customisation" data-demo="{s["slug"]}" href="#">Request Customisation</a></div></div></article></li>')
     chips = f'<button class="chip on" data-f="all" type="button">All <b>{n}</b></button>' + "".join(
         f'<button class="chip" data-f="{k}" type="button">{e(nm)} <b>{len(ss)}</b></button>' for k, nm, ss in GROUPS)
-    inds = "".join(f'<a class="ind rv" href="{sl}/"><i aria-hidden="true">{em}</i><span>{e(nm)}</span>{ARROW}</a>' for em, nm, sl in INDUSTRIES)
+    inds = "".join(f'<a class="ind rv" href="websites-for/{IND_URL[sl]}/"><i aria-hidden="true">{em}</i><span>{e(nm)}</span>{ARROW}</a>' for em, nm, sl in INDUSTRIES)
     inc = "".join(f'<article class="inc rv"><div class="ico" aria-hidden="true">{i}</div><h3>{e(t)}</h3><p>{e(d)}</p></article>' for i, t, d in INCLUDES)
     plans = "".join(
         f'<article class="plan rv{" pop" if pop else ""}">{"<span class=ptag>MOST POPULAR</span>" if pop else ""}<h3>{e(nm)}</h3><p class="for">{e(fr)}</p>'
@@ -178,6 +181,7 @@ def build_landing(sites):
 <section class="warm" id="industries" aria-labelledby="ind-h"><div class="container">
   <div class="sec-head center"><span class="eyebrow">✦ Industries we serve</span><h2 id="ind-h">Websites for <em>every kind of business</em></h2><p>From jewellery showrooms to software companies, we build websites that match how your customers search and buy.</p></div>
   <div class="inds">{inds}</div>
+  <p class="allind"><a href="websites-for/">Browse all {len(_INDS)} industry guides →</a></p>
 </div></section>
 
 <section id="included" aria-labelledby="inc-h"><div class="container">
@@ -224,7 +228,7 @@ def build_landing(sites):
 <footer><div class="container">
   <div class="fgrid">
     <div><img class="logo" src="logo.png" alt="Qrenzy Digital Solutions" width="150" height="52" style="filter:brightness(0) invert(1)"><p>Qrenzy Digital Solutions is an AI-powered digital marketing and website design agency in Thrissur, Kerala.</p><p>{ADDRESS}</p></div>
-    <div><h3>Explore</h3><ul><li><a href="#demos">All demos</a></li><li><a href="#industries">Industries</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+    <div><h3>Explore</h3><ul><li><a href="#demos">All demos</a></li><li><a href="websites-for/">Industry guides</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div><h3>Contact</h3><ul><li><a data-tel href="#">+91 99057 00600</a></li><li><a href="mailto:info@qrenzy.com">info@qrenzy.com</a></li><li><a href="https://www.qrenzy.com" rel="noopener">www.qrenzy.com</a></li><li>Instagram @sajeeshvs313</li></ul></div>
   </div>
   <div class="fbar"><span>© <span id="yr"></span> Qrenzy Digital Solutions. Demo sites use sample content. This site uses Google Analytics to measure visits.</span><span>Thrissur, Kerala, India</span></div>
@@ -283,6 +287,7 @@ h1{font-size:clamp(40px,6.2vw,76px);margin:22px 0 22px;letter-spacing:-.04em}
 .proof{margin-top:26px;color:var(--grey);font-size:14.5px}.proof b{color:var(--ink)}
 .fine{margin-top:10px;color:var(--muted);font-size:12.5px;max-width:560px}
 .pnotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1040px;margin:34px auto 0}.pnotes>div{background:var(--warm);border:1px solid var(--line);border-radius:var(--r);padding:24px}.pnotes h3{font-size:17px;letter-spacing:-.02em;margin-bottom:10px}.pnotes li{font-size:14.5px;color:var(--grey);padding:5px 0;border-bottom:1px solid var(--line)}.pnotes li:last-child{border:0}.pnotes p{font-size:14.5px;color:var(--grey)}
+.allind{text-align:center;margin-top:26px}.allind a{display:inline-block;font-weight:800;color:var(--red);border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 26px;transition:.2s}.allind a:hover{border-color:var(--red)}
 .maplink{display:block;margin-top:6px;font-size:14px;color:#fff;text-decoration:underline;text-underline-offset:3px}
 .map{width:100%;height:240px;border:0;border-radius:var(--r);margin-top:18px}.office{width:100%;height:auto;border-radius:var(--r);margin-top:18px}
 .card-hero{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow)}
