@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>എന്റെ വീട് - ചെലവ് കണക്ക്</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<meta name="theme-color" content="#b45309">
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#292524;--muted:#78716c;--line:#e7e0d6;--brand:#b45309;--brand2:#fef3c7;--ok:#15803d;--bad:#b91c1c;--r:14px}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1917;--card:#292524;--ink:#f5f5f4;--muted:#a8a29e;--line:#44403c;--brand:#f59e0b;--brand2:#44340f;--ok:#4ade80;--bad:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,"Noto Sans Malayalam","Manjari",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:var(--brand);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+header h1{font-size:1.1rem;margin:0}
+header button{background:rgba(255,255,255,.2);color:#fff}
+nav{display:flex;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav button{flex:1;min-width:max-content;padding:12px 14px;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:inherit;cursor:pointer}
+nav button.on{color:var(--brand);border-color:var(--brand);font-weight:600}
+main{max-width:900px;margin:0 auto;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.stat small{color:var(--muted);display:block}
+.stat b{font-size:1.25rem}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.muted{color:var(--muted)}
+h2{font-size:1.05rem;margin:18px 0 10px}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:8px 14px;background:var(--brand);color:#fff}
+button.ghost{background:var(--brand2);color:var(--brand)}
+button.link{background:none;color:var(--bad);padding:4px 8px}
+input,select,textarea{font:inherit;width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 3px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row>*{flex:1}
+.row>button{flex:0 0 auto}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--brand)}
+.bar i.over{background:var(--bad)}
+.item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.item .amt{font-weight:600;white-space:nowrap}
+dialog{border:0;border-radius:var(--r);padding:18px;width:min(460px,94vw);background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.fab{position:fixed;right:16px;bottom:16px;border-radius:50%;width:56px;height:56px;font-size:28px;padding:0;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.tag{display:inline-block;background:var(--brand2);color:var(--brand);border-radius:8px;padding:1px 8px;font-size:.78rem}
+@media print{header,nav,.fab,button{display:none!important}}
+</style>
+</head>
+<body>
+<header><h1 id="title">🏠 എന്റെ വീട്</h1><button data-a="settings">⚙ ക്രമീകരണം</button></header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<button class="fab" id="fab" data-a="addExpense" title="ചെലവ് ചേർക്കുക">+</button>
+<dialog id="dlg"></dialog>
+
+<script>
+'use strict';
+const KEY = 'veedu-kanakk-v1';
+const DEF_CATS = ['സിമന്റ്','കമ്പി (സ്റ്റീൽ)','മണൽ / എം-സാൻഡ് / മെറ്റൽ','ഇഷ്ടിക / കട്ട','ടൈൽസ് / ഫ്ലോറിങ്','ഇലക്ട്രിക്കൽ','പ്ലംബിങ് / സാനിറ്ററി','മരപ്പണി / വാതിൽ-ജനൽ','പെയിന്റിങ്','ഫർണിച്ചർ / ഇന്റീരിയർ','പ്ലാൻ / ലൈസൻസ് / ഫീസ്','ട്രാൻസ്പോർട്ട് / ലോഡിങ്','ദിവസക്കൂലി','ഭക്ഷണം / ചായ','മറ്റുള്ളവ'];
+const DEF_SLABS = ['അടിത്തറ (ഫൗണ്ടേഷൻ)','ബേസ്മെന്റ്','ലിന്റൽ','റൂഫ് സ്ലാബ്','ചുമർ തേപ്പ് (പ്ലാസ്റ്ററിങ്)','ഫ്ലോറിങ്','ഫിനിഷിങ്'];
+const CON = 'കോൺട്രാക്ടർ (സ്ലാബ് പേയ്മെന്റ്)';
+const TABS = [['dash','ഡാഷ്ബോർഡ്'],['exp','ചെലവുകൾ'],['con','കോൺട്രാക്ടർ'],['bud','ബജറ്റ്'],['rep','റിപ്പോർട്ട്']];
+const uid = () => Math.random().toString(36).slice(2, 10);
+const today = () => new Date().toISOString().slice(0, 10);
+const inr = n => '₹' + Math.round(n || 0).toLocaleString('en-IN');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = s => document.querySelector(s);
+
+function fresh() {
+  return { project: { name: 'എന്റെ വീട്', budget: 0 }, cats: DEF_CATS.slice(), budgets: {}, exp: [],
+    con: { name: '', phone: '', slabs: DEF_SLABS.map(n => ({ id: uid(), name: n, amount: 0, pay: [] })) } };
+}
+let S, tab = 'dash', filt = { cat: '', q: '' };
+try { S = JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { S = fresh(); }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { alert('സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ബ്രൗസർ സ്റ്റോറേജ് പരിശോധിക്കുക.'); } };
+
+/* ---------- കണക്കുകൾ ---------- */
+const slabPaid = s => s.pay.reduce((a, p) => a + p.amount, 0);
+const conPaid = () => S.con.slabs.reduce((a, s) => a + slabPaid(s), 0);
+const conTotal = () => S.con.slabs.reduce((a, s) => a + s.amount, 0);
+const ownTotal = () => S.exp.reduce((a, e) => a + e.amount, 0);
+const grand = () => ownTotal() + conPaid();
+function byCat() {
+  const m = {};
+  S.exp.forEach(e => m[e.cat] = (m[e.cat] || 0) + e.amount);
+  if (conPaid()) m[CON] = conPaid();
+  return m;
+}
+function byMonth() {
+  const m = {};
+  S.exp.forEach(e => { const k = e.date.slice(0, 7); m[k] = (m[k] || 0) + e.amount; });
+  S.con.slabs.forEach(s => s.pay.forEach(p => { const k = p.date.slice(0, 7); m[k] = (m[k] || 0) + p.amount; }));
+  return Object.entries(m).sort();
+}
+const pct = (a, b) => b > 0 ? Math.min(100, a / b * 100) : 0;
+
+/* ---------- പേജുകൾ ---------- */
+function vDash() {
+  const g = grand(), b = S.project.budget, left = b - g, cats = Object.entries(byCat()).sort((a, c) => c[1] - a[1]);
+  return `<div class="grid">
+    <div class="card stat"><small>ആകെ ചെലവ്</small><b>${inr(g)}</b></div>
+    <div class="card stat"><small>ബജറ്റ്</small><b>${b ? inr(b) : '—'}</b></div>
+    <div class="card stat"><small>ബാക്കി ബജറ്റ്</small><b class="${left < 0 ? 'bad' : 'ok'}">${b ? inr(left) : '—'}</b></div>
+    <div class="card stat"><small>കോൺട്രാക്ടർക്ക് നൽകിയത്</small><b>${inr(conPaid())}</b></div>
+    <div class="card stat"><small>കോൺട്രാക്ടർക്ക് ബാക്കി</small><b class="bad">${inr(Math.max(0, conTotal() - conPaid()))}</b></div>
+    <div class="card stat"><small>നമ്മൾ നേരിട്ട് ചെയ്ത ചെലവ്</small><b>${inr(ownTotal())}</b></div>
+  </div>
+  ${b ? `<div class="card"><div class="row"><span>ബജറ്റ് ഉപയോഗം</span><b style="text-align:right">${Math.round(g / b * 100)}%</b></div><div class="bar"><i class="${g > b ? 'over' : ''}" style="width:${pct(g, b)}%"></i></div></div>` : '<div class="card muted">ബജറ്റ് നൽകാൻ മുകളിലെ ⚙ ക്രമീകരണം ഉപയോഗിക്കുക.</div>'}
+  <h2>വിഭാഗം തിരിച്ചുള്ള ചെലവ്</h2>
+  <div class="card">${cats.length ? cats.map(([c, v]) => `<div style="margin-bottom:10px"><div class="row"><span>${esc(c)}</span><b style="text-align:right">${inr(v)} <small class="muted">(${Math.round(v / g * 100)}%)</small></b></div><div class="bar"><i style="width:${pct(v, g)}%"></i></div></div>`).join('') : '<span class="muted">ചെലവുകൾ ഒന്നും ചേർത്തിട്ടില്ല. താഴെ വലത്തെ + അമർത്തുക.</span>'}</div>
+  <h2>മാസം തിരിച്ച്</h2>
+  <div class="card">${byMonth().map(([m, v]) => `<div class="item"><span>${m}</span><span class="amt">${inr(v)}</span></div>`).join('') || '<span class="muted">—</span>'}</div>`;
+}
+
+function vExp() {
+  const list = S.exp.filter(e => (!filt.cat || e.cat === filt.cat) && (!filt.q || (e.desc + e.payee).toLowerCase().includes(filt.q.toLowerCase()))).sort((a, b) => b.date.localeCompare(a.date));
+  const tot = list.reduce((a, e) => a + e.amount, 0);
+  return `<div class="row"><select id="fcat"><option value="">എല്ലാ വിഭാഗവും</option>${S.cats.map(c => `<option ${filt.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select><input id="fq" placeholder="തിരയുക…" value="${esc(filt.q)}"></div>
+  <p class="muted">${list.length} എൻട്രി · ആകെ <b>${inr(tot)}</b></p>
+  <div class="card">${list.map(e => `<div class="item"><div><b>${esc(e.desc || e.cat)}</b><br><span class="tag">${esc(e.cat)}</span> <small class="muted">${e.date}${e.payee ? ' · ' + esc(e.payee) : ''}${e.mode ? ' · ' + esc(e.mode) : ''}</small></div><div style="text-align:right"><div class="amt">${inr(e.amount)}</div><button class="ghost" data-a="editExpense" data-id="${e.id}">തിരുത്തുക</button><button class="link" data-a="delExpense" data-id="${e.id}">മായ്ക്കുക</button></div></div>`).join('') || '<span class="muted">എൻട്രികൾ ഇല്ല.</span>'}</div>`;
+}
+
+function vCon() {
+  const c = S.con;
+  return `<div class="card"><div class="row"><div><label>കോൺട്രാക്ടറുടെ പേര്</label><input id="cname" value="${esc(c.name)}"></div><div><label>ഫോൺ</label><input id="cphone" value="${esc(c.phone)}" inputmode="tel"></div></div></div>
+  <div class="grid">
+    <div class="card stat"><small>ആകെ കരാർ തുക</small><b>${inr(conTotal())}</b></div>
+    <div class="card stat"><small>നൽകിയത്</small><b class="ok">${inr(conPaid())}</b></div>
+    <div class="card stat"><small>ബാക്കി</small><b class="bad">${inr(conTotal() - conPaid())}</b></div>
+  </div>
+  <div class="row" style="margin-bottom:8px"><h2 style="margin:0;flex:1">സ്ലാബ് തിരിച്ച്</h2><button data-a="addSlab">+ സ്ലാബ് / ഘട്ടം</button></div>
+  ${c.slabs.map(s => { const p = slabPaid(s); return `<div class="card">
+    <div class="row"><b>${esc(s.name)}</b><span style="text-align:right">കരാർ: <b>${inr(s.amount)}</b></span></div>
+    <div class="bar"><i class="${p > s.amount && s.amount ? 'over' : ''}" style="width:${pct(p, s.amount)}%"></i></div>
+    <p class="muted" style="margin:6px 0">നൽകിയത് <b class="ok">${inr(p)}</b> · ബാക്കി <b class="${s.amount - p < 0 ? 'bad' : ''}">${inr(s.amount - p)}</b></p>
+    ${s.pay.sort((a, b) => b.date.localeCompare(a.date)).map(x => `<div class="item"><span>${x.date}${x.note ? ' · ' + esc(x.note) : ''}</span><span><b>${inr(x.amount)}</b> <button class="link" data-a="delPay" data-s="${s.id}" data-id="${x.id}">✕</button></span></div>`).join('')}
+    <div class="row" style="margin-top:8px"><button data-a="addPay" data-s="${s.id}">+ പണം നൽകി</button><button class="ghost" data-a="editSlab" data-s="${s.id}">കരാർ തുക / പേര്</button><button class="link" data-a="delSlab" data-s="${s.id}">സ്ലാബ് നീക്കുക</button></div>
+  </div>`; }).join('')}`;
+}
+
+function vBud() {
+  const cats = byCat(), all = S.cats.concat(cats[CON] !== undefined ? [CON] : []);
+  return `<p class="muted">ഓരോ വിഭാഗത്തിനും ബജറ്റ് നൽകിയാൽ എത്ര ചെലവായി / ബാക്കി എത്ര എന്ന് കാണാം.</p>
+  ${all.map(c => { const b = S.budgets[c] || 0, v = cats[c] || 0; return `<div class="card"><div class="row"><b>${esc(c)}</b><input type="number" inputmode="numeric" min="0" data-bud="${esc(c)}" value="${b || ''}" placeholder="ബജറ്റ് ₹" style="max-width:150px"></div>
+  <div class="bar"><i class="${b && v > b ? 'over' : ''}" style="width:${pct(v, b || v)}%"></i></div>
+  <small class="muted">ചെലവ് ${inr(v)}${b ? ` · ബാക്കി <span class="${b - v < 0 ? 'bad' : 'ok'}">${inr(b - v)}</span>` : ''}</small></div>`; }).join('')}`;
+}
+
+function vRep() {
+  return `<div class="card"><h2 style="margin-top:0">റിപ്പോർട്ട്</h2>
+  <div class="row"><button data-a="csv">📄 CSV (Excel) ഡൗൺലോഡ്</button><button class="ghost" data-a="print">🖨 പ്രിന്റ് / PDF</button></div></div>
+  <div class="card"><h2 style="margin-top:0">ബാക്കപ്പ്</h2><p class="muted">ഡാറ്റ ഈ ഫോണിൽ/ബ്രൗസറിൽ മാത്രമാണ് സേവ് ആകുന്നത്. ഇടയ്ക്കിടെ ബാക്കപ്പ് എടുക്കുക.</p>
+  <div class="row"><button data-a="backup">⬇ ബാക്കപ്പ് എടുക്കുക</button><button class="ghost" data-a="restore">⬆ റീസ്റ്റോർ</button></div><input type="file" id="rf" accept="application/json" hidden></div>
+  <div class="card"><button class="link" data-a="reset">എല്ലാ ഡാറ്റയും മായ്ക്കുക</button></div>
+  <table style="width:100%;border-collapse:collapse" class="card"><tr><th align="left">വിഭാഗം</th><th align="right">തുക</th></tr>${Object.entries(byCat()).sort((a, b) => b[1] - a[1]).map(([c, v]) => `<tr><td>${esc(c)}</td><td align="right">${inr(v)}</td></tr>`).join('')}<tr><th align="left">ആകെ</th><th align="right">${inr(grand())}</th></tr></table>`;
+}
+
+const VIEWS = { dash: vDash, exp: vExp, con: vCon, bud: vBud, rep: vRep };
+function render() {
+  $('#title').textContent = '🏠 ' + (S.project.name || 'എന്റെ വീട്');
+  $('#nav').innerHTML = TABS.map(([k, n]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-id="${k}">${n}</button>`).join('');
+  $('#main').innerHTML = VIEWS[tab]();
+  $('#fab').style.display = tab === 'con' || tab === 'rep' ? 'none' : '';
+}
+
+/* ---------- ഡയലോഗുകൾ ---------- */
+function ask(title, fields, onOk, extra = '') {
+  const d = $('#dlg');
+  d.innerHTML = `<form method="dialog"><h2 style="margin-top:0">${title}</h2>${fields}${extra}<div class="row" style="margin-top:16px"><button type="button" class="ghost" id="dno">റദ്ദാക്കുക</button><button id="dyes">സേവ്</button></div></form>`;
+  d.showModal();
+  $('#dno').onclick = () => d.close();
+  d.querySelector('form').onsubmit = ev => {
+    ev.preventDefault();
+    const v = {}; d.querySelectorAll('[name]').forEach(i => v[i.name] = i.value.trim());
+    if (onOk(v) !== false) { d.close(); save(); render(); }
+  };
+}
+const num = v => Math.max(0, parseFloat(v) || 0);
+const fld = (n, l, val = '', t = 'text', x = '') => `<label>${l}</label><input name="${n}" type="${t}" value="${esc(val)}" ${x}>`;
+
+function expForm(e) {
+  e = e || { date: today(), cat: S.cats[0], desc: '', amount: '', payee: '', mode: 'പണം' };
+  ask(e.id ? 'ചെലവ് തിരുത്തുക' : 'പുതിയ ചെലവ്',
+    fld('date', 'തീയതി', e.date, 'date', 'required') +
+    `<label>വിഭാഗം</label><select name="cat">${S.cats.map(c => `<option ${c === e.cat ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select>` +
+    fld('desc', 'വിവരണം (ഉദാ: 50 ബാഗ് സിമന്റ്)', e.desc) +
+    fld('amount', 'തുക (₹)', e.amount, 'number', 'required min="1" step="any" inputmode="decimal"') +
+    fld('payee', 'ആർക്ക് നൽകി / കട', e.payee) +
+    `<label>പേയ്മെന്റ് രീതി</label><select name="mode">${['പണം', 'UPI / GPay', 'ബാങ്ക് ട്രാൻസ്ഫർ', 'ചെക്ക്', 'കടം / ക്രെഡിറ്റ്'].map(m => `<option ${m === e.mode ? 'selected' : ''}>${m}</option>`).join('')}</select>`,
+    v => {
+      const o = { id: e.id || uid(), date: v.date, cat: v.cat, desc: v.desc, amount: num(v.amount), payee: v.payee, mode: v.mode };
+      if (!o.amount) return false;
+      e.id ? Object.assign(S.exp.find(x => x.id === e.id), o) : S.exp.push(o);
+    },
+    `<button type="button" class="link" id="addcat">+ പുതിയ വിഭാഗം</button>`);
+  $('#addcat').onclick = () => { const n = prompt('പുതിയ വിഭാഗത്തിന്റെ പേര്'); if (n && n.trim()) { S.cats.push(n.trim()); save(); expForm({ ...e, cat: n.trim() }); } };
+}
+
+function settings() {
+  ask('ക്രമീകരണം', fld('name', 'പ്രോജക്ട് പേര്', S.project.name) + fld('budget', 'ആകെ ബജറ്റ് (₹)', S.project.budget || '', 'number', 'min="0" inputmode="numeric"'),
+    v => { S.project.name = v.name || 'എന്റെ വീട്'; S.project.budget = num(v.budget); });
+}
+
+/* ---------- ക്ലിക്ക് പ്രവർത്തനങ്ങൾ ---------- */
+const slab = id => S.con.slabs.find(s => s.id === id);
+function download(name, text, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type }));
+  a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+const csvCell = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+const ACT = {
+  tab: t => { tab = t.dataset.id; render(); scrollTo(0, 0); },
+  settings, addExpense: () => expForm(),
+  editExpense: t => expForm(S.exp.find(e => e.id === t.dataset.id)),
+  delExpense: t => { if (confirm('ഈ ചെലവ് മായ്ക്കട്ടെ?')) { S.exp = S.exp.filter(e => e.id !== t.dataset.id); save(); render(); } },
+  addSlab: () => ask('പുതിയ സ്ലാബ് / ഘട്ടം', fld('name', 'പേര്', '', 'text', 'required') + fld('amount', 'കരാർ തുക (₹)', '', 'number', 'min="0"'),
+    v => { if (!v.name) return false; S.con.slabs.push({ id: uid(), name: v.name, amount: num(v.amount), pay: [] }); }),
+  editSlab: t => { const s = slab(t.dataset.s); ask('സ്ലാബ് തിരുത്തുക', fld('name', 'പേര്', s.name, 'text', 'required') + fld('amount', 'കരാർ തുക (₹)', s.amount, 'number', 'min="0"'), v => { s.name = v.name || s.name; s.amount = num(v.amount); }); },
+  delSlab: t => { const s = slab(t.dataset.s); if (confirm(`"${s.name}" നീക്കട്ടെ? ഇതിലെ പേയ്മെന്റുകളും പോകും.`)) { S.con.slabs = S.con.slabs.filter(x => x !== s); save(); render(); } },
+  addPay: t => { const s = slab(t.dataset.s); ask(`${esc(s.name)} - പണം നൽകി`, fld('date', 'തീയതി', today(), 'date', 'required') + fld('amount', 'തുക (₹)', '', 'number', 'required min="1" step="any" inputmode="decimal"') + fld('note', 'കുറിപ്പ് (ഉദാ: അഡ്വാൻസ്, ചെക്ക് നം.)'), v => { if (!num(v.amount)) return false; s.pay.push({ id: uid(), date: v.date, amount: num(v.amount), note: v.note }); }); },
+  delPay: t => { const s = slab(t.dataset.s); if (confirm('ഈ പേയ്മെന്റ് മായ്ക്കട്ടെ?')) { s.pay = s.pay.filter(p => p.id !== t.dataset.id); save(); render(); } },
+  csv: () => {
+    const rows = [['തീയതി', 'വിഭാഗം', 'വിവരണം', 'തുക', 'ആർക്ക്', 'രീതി']];
+    S.exp.forEach(e => rows.push([e.date, e.cat, e.desc, e.amount, e.payee, e.mode]));
+    S.con.slabs.forEach(s => s.pay.forEach(p => rows.push([p.date, CON, `${s.name} ${p.note}`.trim(), p.amount, S.con.name, ''])));
+    rows.sort((a, b) => (a[0] > b[0] ? 1 : -1));
+    download('veedu-kanakku.csv', '﻿' + rows.map(r => r.map(csvCell).join(',')).join('\n'), 'text/csv;charset=utf-8');
+  },
+  print: () => print(),
+  backup: () => download(`veedu-backup-${today()}.json`, JSON.stringify(S), 'application/json'),
+  restore: () => $('#rf').click(),
+  reset: () => { if (confirm('എല്ലാ ഡാറ്റയും മായ്ക്കട്ടെ? ഇത് തിരികെ എടുക്കാൻ കഴിയില്ല.') && confirm('ഉറപ്പാണോ?')) { S = fresh(); save(); render(); } }
+};
+document.addEventListener('click', e => { const t = e.target.closest('[data-a]'); if (t && ACT[t.dataset.a]) ACT[t.dataset.a](t); });
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'cname') { S.con.name = t.value; save(); }
+  else if (t.id === 'cphone') { S.con.phone = t.value; save(); }
+  else if (t.dataset.bud) { S.budgets[t.dataset.bud] = num(t.value); save(); }
+  else if (t.id === 'fq') { filt.q = t.value; const p = t.selectionStart; render(); const n = $('#fq'); n.focus(); n.setSelectionRange(p, p); }
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'fcat') { filt.cat = e.target.value; render(); }
+  else if (e.target.dataset.bud) render();
+  else if (e.target.id === 'rf' && e.target.files[0]) {
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const d = JSON.parse(r.result);
+        if (!d || !Array.isArray(d.exp) || !d.con || !Array.isArray(d.con.slabs) || !Array.isArray(d.cats)) throw 0;
+        if (confirm('നിലവിലെ ഡാറ്റ മാറ്റി ബാക്കപ്പ് റീസ്റ്റോർ ചെയ്യട്ടെ?')) { S = { ...fresh(), ...d }; save(); render(); }
+      } catch { alert('ഇത് ശരിയായ ബാക്കപ്പ് ഫയൽ അല്ല.'); }
+    };
+    r.readAsText(e.target.files[0]);
+  }
+});
+render();
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>
