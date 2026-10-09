@@ -1,16 +1,16 @@
-# എന്റെ വീട് – ചെലവ് കണക്ക് (Home Construction Expense Tracker)
+# Home Build Ledger
 
-വീട് നിർമ്മാണത്തിന്റെ ചെലവുകൾ വിഭാഗം തിരിച്ചും, കോൺട്രാക്ടർ പേയ്മെന്റുകൾ സ്ലാബ് തിരിച്ചും കണക്കാക്കുന്ന മലയാളം ആപ്പ്.
+A simple app to track home construction costs by category, and contractor payments slab by slab.
 
-## സവിശേഷതകൾ
-- ഡാഷ്ബോർഡ്: ആകെ ചെലവ്, ബജറ്റ്, ബാക്കി, വിഭാഗം/മാസം തിരിച്ച്
-- ചെലവുകൾ: തീയതി, വിഭാഗം, തുക, കട, പേയ്മെന്റ് രീതി; തിരയാനും ഫിൽട്ടർ ചെയ്യാനും കഴിയും
-- കോൺട്രാക്ടർ: സ്ലാബ് തിരിച്ച് കരാർ തുക, നൽകിയത്, ബാക്കി
-- വിഭാഗം തിരിച്ചുള്ള ബജറ്റ്
-- CSV (Excel) എക്സ്പോർട്ട്, പ്രിന്റ്/PDF, ബാക്കപ്പ് & റീസ്റ്റോർ
-- ഫോണിൽ ഇൻസ്റ്റാൾ ചെയ്യാം (PWA), ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും
-- ഡാറ്റ ഉപയോക്താവിന്റെ ഉപകരണത്തിൽ മാത്രം (localStorage)
+## Features
+- Dashboard: total spent, budget, balance, spending by category and by month
+- Expenses: date, category, amount, shop, payment mode; search and filter
+- Contractor: contract amount, paid and balance for each slab or stage
+- Category-wise budgets
+- CSV (Excel) export, backup and restore
+- Installable on a phone (PWA) and works offline
+- Data stays on the user's device (localStorage)
 
-## പ്രവർത്തിപ്പിക്കാൻ
-`python3 -m http.server 8080` (ഈ ഫോൾഡറിൽ) → http://localhost:8080
-ഏത് സ്റ്റാറ്റിക് ഹോസ്റ്റിങ്ങിലും (Netlify, Vercel, GitHub Pages) അപ്‌ലോഡ് ചെയ്യാം.
+## Run
+Run `python3 -m http.server 8080` in this folder and open http://localhost:8080.
+It is a static site, so it can be uploaded as is to Netlify, Vercel or GitHub Pages.

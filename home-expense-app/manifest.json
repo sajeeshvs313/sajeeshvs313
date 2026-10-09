@@ -1,11 +1,11 @@
 {
-  "name": "എന്റെ വീട് - ചെലവ് കണക്ക്",
-  "short_name": "വീട് കണക്ക്",
+  "name": "Home Build Ledger",
+  "short_name": "Home Ledger",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#faf7f2",
   "theme_color": "#b45309",
-  "lang": "ml",
+  "lang": "en",
   "icons": [
     {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
   ]
