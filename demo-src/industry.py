@@ -18,17 +18,17 @@ NAME_OF = {i["demo"]: i for i in INDS}
 
 EXTRA_CSS = r"""
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:18px;display:flex;flex-wrap:wrap;gap:6px}.crumbs a{color:var(--grey);font-weight:600}.crumbs a:hover{color:var(--red)}.crumbs span{opacity:.5}
-.hero--ind{padding-bottom:clamp(40px,5vw,70px)}
-.shotcard{display:block;background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
-.shotcard:hover{transform:translateY(-6px);border-color:rgba(227,30,36,.45)}
+.hero--ind{padding-bottom:56px}
+.shotcard{display:block;background:#fff;border:1.5px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.shotcard:hover{transform:translateY(-4px);border-color:rgba(227,30,36,.2)}
 .shotcard .bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 14px;background:#f6f6f4}.shotcard .bar i{width:9px;height:9px;border-radius:50%;background:#d4d4d9}.shotcard .bar i:nth-child(1){background:#ff5f56}.shotcard .bar i:nth-child(2){background:#ffbd2e}.shotcard .bar i:nth-child(3){background:#27c93f}
 .shotcard .bar span{margin-left:8px;font-size:12px;color:var(--muted);background:#fff;border-radius:999px;padding:2px 12px}
 .shotcard img{width:100%;height:auto;aspect-ratio:8/5;object-fit:cover;object-position:top}
 .shotcard p{padding:14px 20px 18px;font-weight:800;font-size:14.5px;color:var(--red);display:flex;justify-content:space-between;align-items:center}.shotcard p svg{width:17px;height:17px}
 .qa{padding:0}.qcard{background:var(--warm);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,34px);display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,40px);align-items:center}
-.qcard h2{font-size:clamp(20px,2.4vw,26px);margin:10px 0 8px}.qcard p{color:var(--grey);font-size:15.5px}
+.qcard h2{font-size:clamp(20px,2.4vw,26px);margin:10px 0 8px}.qcard p{color:#555;font-size:14px}
 .qcard dl{display:grid;gap:10px}.qcard dl div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;gap:12px;font-size:14.5px}.qcard dt{color:var(--muted);font-weight:600}.qcard dd{font-weight:800;color:var(--ink);text-align:right}
-.qchips{display:flex;flex-wrap:wrap;gap:10px}.qchips li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;font-size:14.5px}.qchips li:before{content:"🔎 ";font-size:13px}
+.qchips{display:flex;flex-wrap:wrap;gap:10px}.qchips li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;font-size:13px}.qchips li:before{content:"🔎 ";font-size:13px}
 .needs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.need{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px}.need b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;font-size:14px;margin-bottom:12px}.need h3{font-size:17.5px;letter-spacing:-.02em}.need p{color:var(--grey);font-size:14.5px;margin-top:8px}
 .mist{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.mi{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px}.mi .no{font-weight:800;color:#b3121a;font-size:15px;display:flex;gap:8px}.mi .no:before{content:"✕";background:#fde8e8;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:11px;flex:none}.mi .fix{margin-top:12px;color:var(--grey);font-size:14.5px;display:flex;gap:8px}.mi .fix:before{content:"✓";color:#1faa59;font-weight:900}
 .seeit{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,56px);align-items:center}
@@ -75,8 +75,6 @@ def head(title, desc, url, depth, image):
 <meta property="og:url" content="{url}"><meta property="og:locale" content="en_IN"><meta property="og:image" content="{image}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:description" content="{e(desc)}">
 <link rel="icon" href="{'../' * depth}logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 """
 
 
