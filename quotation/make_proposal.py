@@ -6,12 +6,12 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Propo
 
 <section class="page"><div class="bar"></div>
 <div class="top"><img src="logo.png" alt="Qrenzy Digital Solutions"><div class="qt"><h1>PRO<em>POSAL</em></h1><span class="tag">DIGITAL MARKETING · NORTH AMERICA</span></div></div>
-<div class="meta"><div><small>Document no.</small><b>QZ-PR-2026-002 (rev 3)</b></div><div><small>Date</small><b>3 Nov 2026</b></div><div><small>Status</small><b>For discussion</b></div></div>
+<div class="meta"><div><small>Document no.</small><b>QZ-PR-2026-003</b></div><div><small>Date</small><b>3 Nov 2026</b></div><div><small>Status</small><b>For discussion</b></div></div>
 <div class="parties"><div><h3>From</h3><p><b>Qrenzy Digital Solutions</b><br>Sajeesh V S, Proprietor<br>Thrissur, Kerala, India<br>+91 99057 00600 · info@qrenzy.com</p></div>
-<div><h3>Prepared for</h3><p><b>Vinod Menon</b><br>Business 1: Canadian immigration services (RCIC)<br>Business 2: Accounting and bookkeeping (new)</p></div></div>
+<div><h3>Prepared for</h3><p><b>Vinod Kumar, Director</b><br>Business 1: Entra Immigration Inc., Calgary, Alberta (RCIC)<br>Business 2: Accounting and bookkeeping (new)</p></div></div>
 <h2 style="margin-top:2mm">What we <em>understood</em></h2>
 <table class="dt"><thead><tr><th style="width:36mm"></th><th>Business 1: Immigration</th><th>Business 2: Accounting / bookkeeping</th></tr></thead><tbody>
-<tr><td><b>Who</b></td><td>Established practice. Licensed RCICs.</td><td>New business, starting in the US.</td></tr>
+<tr><td><b>Who</b></td><td>Established practice since 2021. Licensed RCICs.</td><td>New business, starting in the US.</td></tr>
 <tr><td><b>Who to reach</b></td><td>People in Canada, the US, the Middle East and possibly India.</td><td>US small businesses, e-commerce sellers and contractors first. Canada later.</td></tr>
 <tr><td><b>Today</b></td><td>Has a website and three social pages, reviewed on 3 Nov 2026. See page 3.</td><td>Starting from the beginning.</td></tr>
 <tr><td><b>Budget</b></td><td colspan="2">Open for discussion. To be set together after the call.</td></tr>
@@ -22,6 +22,8 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Propo
 <tr><td><b>Enquiries (leads)</b></td><td>Early speed, quick learning</td><td>Low quality, wasted follow-up time</td></tr>
 <tr><td><b>Booked consultations</b></td><td>Real interest. Our main measure from day one</td><td>Needs fast replies from your team</td></tr>
 <tr><td><b>Signed clients</b></td><td>The true result</td><td>Needs your feedback, results come later</td></tr></tbody></table>
+<h2>See the <em>approach</em> in action</h2>
+<div class="box" style="padding:2.4mm 5mm"><ul class="terms" style="padding:0"><li><b>Immigration sample:</b> demo.qrenzy.com/immigration-canada/ — a clear headline, licence shown, a page per programme, WhatsApp, booking and FAQ.</li><li><b>US bookkeeping sample:</b> demo.qrenzy.com/bookkeeping-us/ — pages by client type, clear pricing and a free intro call.</li><li style="color:var(--muted)">Both use fictional names, fees and reviews. They show the structure, not your final design.</li></ul></div>
 {foot(1)}</section>
 
 <section class="page"><div class="bar"></div>
@@ -81,9 +83,9 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Propo
 <h2>Next <em>steps</em></h2>
 <table class="dt"><thead><tr><th>#</th><th>Action</th><th>By</th></tr></thead><tbody>
 <tr><td class="n">1</td><td><b>Discovery call</b> (30 minutes). Suggested: <b>Thu 5 Nov, 10:00 am ET</b> (8:30 pm IST) or <b>Fri 6 Nov, 11:00 am ET</b> (9:30 pm IST).</td><td>Both</td></tr>
-<tr><td class="n">2</td><td><b>Send budget range</b>, first markets, and viewer access to Google Analytics and Search Console before the call.</td><td>Vinod</td></tr>
+<tr><td class="n">2</td><td><b>Review the two sample websites</b> and tell us what you like. <b>Send budget range</b>, first markets, and viewer access to Google Analytics and Search Console before the call.</td><td>Vinod</td></tr>
 <tr><td class="n">3</td><td><b>Final quotation</b> for each business, within 2 working days of the call.</td><td>Qrenzy</td></tr>
 <tr><td class="n">4</td><td><b>Start the pilot</b> after the quotation is accepted and the first payment is received.</td><td>Both</td></tr></tbody></table>
-<div class="sign"><div><b>For Qrenzy Digital Solutions</b>Sajeesh V S, Proprietor</div><div><b>Noted by Vinod Menon</b>Name and date</div></div>
+<div class="sign"><div><b>For Qrenzy Digital Solutions</b>Sajeesh V S, Proprietor</div><div><b>Noted by Vinod Kumar</b>Name and date</div></div>
 {foot(4)}</section></body></html>"""
-open('Vinod-Menon-Proposal.html','w').write(html)
+open('Vinod-Kumar-Proposal.html','w').write(html)

@@ -1,7 +1,7 @@
 """demo.qrenzy.com landing page in the qrenzy.com visual style. SEO + AEO ready."""
 import json
 from template import DOMAIN, WA_SVG, ARROW, PHONE_SVG, e
-import ind2, ind3  # noqa: F401  (registers industry entries)
+import ind2, ind3, ind4  # noqa: F401  (registers industry entries)
 from ind1 import INDS as _INDS
 IND_URL = {i["demo"]: i["url"] for i in _INDS}
 
@@ -11,7 +11,7 @@ GROUPS = [
     ("home", "Home, Property & Construction", ["real-estate", "interior", "landscaping", "cleaning", "pest-control", "solar", "crane"]),
     ("events", "Events & Creative", ["auditorium", "wedding", "photography"]),
     ("retail", "Retail & Fashion", ["jewellery", "fashion", "ecommerce", "beauty"]),
-    ("pro", "Education & Professional", ["tuition", "accounting", "legal", "finance-insurance"]),
+    ("pro", "Education & Professional", ["tuition", "accounting", "legal", "finance-insurance", "immigration-canada", "bookkeeping-us"]),
     ("tech", "Tech, Industry & Auto", ["it-software", "manufacturing", "corporate-b2b", "car-care"]),
 ]
 SLUG_GROUP = {s: (k, n) for k, n, ss in GROUPS for s in ss}

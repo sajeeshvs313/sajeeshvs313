@@ -1,9 +1,9 @@
-"""Indexable industry landing pages (30) + hub page, in the qrenzy.com style."""
+"""Indexable industry landing pages (32) + hub page, in the qrenzy.com style."""
 import json
 from template import DOMAIN, WA_SVG, ARROW, PHONE_SVG, e
 import landing
 from landing import CSS as LCSS, GROUPS, ADDRESS, INCLUDED, EXCLUDED, PLANS
-import ind1, ind2, ind3  # noqa: F401  (importing registers the entries)
+import ind1, ind2, ind3, ind4  # noqa: F401  (importing registers the entries)
 from ind1 import INDS
 
 ORG_ID = "https://www.qrenzy.com/#org"
@@ -12,7 +12,7 @@ ORG = {"@type": "ProfessionalService", "@id": ORG_ID, "name": "Qrenzy Digital So
        "telephone": "+919905700600", "email": "info@qrenzy.com",
        "address": {"@type": "PostalAddress", "streetAddress": "Medical College Road, Kodankandan Jn, Deepti Nagar, Mundur P.O.", "addressLocality": "Thrissur",
                    "addressRegion": "Kerala", "postalCode": "680541", "addressCountry": "IN"}}
-LASTMOD = "2026-10-09"
+LASTMOD = "2026-11-03"
 URL_OF = {i["demo"]: i["url"] for i in INDS}
 NAME_OF = {i["demo"]: i for i in INDS}
 

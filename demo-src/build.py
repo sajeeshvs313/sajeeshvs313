@@ -2,7 +2,7 @@ import os, sys, importlib, shutil
 sys.path.insert(0, os.path.dirname(__file__))
 from template import build_page
 OUT = os.path.join(os.path.dirname(__file__), "..", "demo")
-mods = [m for m in ("data1", "data2", "data3", "data4") if os.path.exists(os.path.join(os.path.dirname(__file__), m + ".py"))]
+mods = [m for m in ("data1", "data2", "data3", "data4", "data5") if os.path.exists(os.path.join(os.path.dirname(__file__), m + ".py"))]
 sites = []
 for m in mods:
     sites += importlib.import_module(m).SITES

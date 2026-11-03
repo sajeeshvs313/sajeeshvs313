@@ -322,9 +322,9 @@ def build_page(s):
     # --- structured data (static, crawler-friendly) ---
     ld_business = {
         "@type": s.get("schema", "LocalBusiness"), "@id": url + "#business", "name": s["name"], "url": url,
-        "description": s["desc"], "telephone": "+919905700600", "priceRange": s.get("range", "₹₹"),
+        "description": s["desc"], "telephone": s.get("tel", "+919905700600"), "priceRange": s.get("range", "₹₹"),
         "address": {"@type": "PostalAddress", "streetAddress": s["addr"], "addressLocality": s.get("city", "Kochi"),
-                    "addressRegion": "Kerala", "addressCountry": "IN"},
+                    "addressRegion": s.get("region", "Kerala"), "addressCountry": s.get("country", "IN")},
         "areaServed": [{"@type": "City", "name": a} for a in s["areas"]],
         "openingHoursSpecification": hours_schema(s["hours_spec"]),
         "hasOfferCatalog": {"@type": "OfferCatalog", "name": s["services_h"], "itemListElement": [
@@ -349,7 +349,7 @@ def build_page(s):
         li = "".join(f"<li>{e(f)}</li>" for f in feats)
         plans.append(
             f'<article class="plan rv{" pop" if pop else ""}">{"<span class=tag>MOST POPULAR</span>" if pop else ""}'
-            f'<h3>{e(pn)}</h3><p class="for">{e(fr)}</p><div class="price">{('<sup>₹</sup>' + e(price)) if price[0].isdigit() else e(price)}<small> {e(unit)}</small></div><ul>{li}</ul>'
+            f'<h3>{e(pn)}</h3><p class="for">{e(fr)}</p><div class="price">{('<sup>' + e(s.get('cur', '₹')) + '</sup>' + e(price)) if price[0].isdigit() else e(price)}<small> {e(unit)}</small></div><ul>{li}</ul>'
             f'<a class="btn {"btn-p" if pop else "btn-o"}" data-wa="Hi, I am interested in {e(pn)}." href="#contact">{e(btn)}</a></article>')
     show = "".join(
         f'<article class="tile rv"><div class="pic"><em>{e(tag)}</em><span aria-hidden="true">{i}</span></div><div class="in"><h3>{e(t)}</h3><p>{e(m)}</p>'
@@ -377,7 +377,7 @@ def build_page(s):
     body_font, head_font = ft[1], ft[2]
     og_img = ""
     page = f"""<!doctype html>
-<html lang="en-IN"{' data-theme="dark"' if dark else ''} style="--acc:{s['acc']};--acc2:{s['acc2']};--on-acc:{s.get('on_acc','#fff')};--font-body:{body_font},system-ui,sans-serif;--font-head:{head_font},system-ui,sans-serif{';--bg:' + s['bg'] if s.get('bg') and not dark else ''}">
+<html lang="{s.get('lang', 'en-IN')}"{' data-theme="dark"' if dark else ''} style="--acc:{s['acc']};--acc2:{s['acc2']};--on-acc:{s.get('on_acc','#fff')};--font-body:{body_font},system-ui,sans-serif;--font-head:{head_font},system-ui,sans-serif{';--bg:' + s['bg'] if s.get('bg') and not dark else ''}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -386,14 +386,14 @@ def build_page(s):
 <meta name="robots" content="{robots}">
 <!-- Demo site: remove noindex (INDEXABLE=True) only when this becomes a real client website -->
 <link rel="canonical" href="{url}">
-<link rel="alternate" hreflang="en-IN" href="{url}">
+<link rel="alternate" hreflang="{s.get('lang', 'en-IN')}" href="{url}">
 <meta name="theme-color" content="{'#0b0c10' if dark else s['acc']}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{e(s['name'])}">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(s['desc'])}">
 <meta property="og:url" content="{url}">
-<meta property="og:locale" content="en_IN">
+<meta property="og:locale" content="{s.get('og_locale', 'en_IN')}">
 <meta property="og:image" content="{DOMAIN}/assets/thumbs/{s['slug']}.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
@@ -516,7 +516,7 @@ def build_page(s):
     <div class="cgrid">
       <div class="panel rv">
         <address class="info" style="font-style:normal">
-          <div><i aria-hidden="true">📍</i><p><b>Address</b><span>{e(s['addr'])}, {e(s.get('city','Kochi'))}, Kerala</span></p></div>
+          <div><i aria-hidden="true">📍</i><p><b>Address</b><span>{e(s['addr'])}, {e(s.get('city','Kochi'))}, {e(s.get('region_label','Kerala'))}</span></p></div>
           <div><i aria-hidden="true">📞</i><p><b>Call / WhatsApp</b><a data-tel href="#">+91 99057 00600</a></p></div>
           <div><i aria-hidden="true">🕒</i><p><b>Opening hours</b><span>{e(s['hours_txt'])}</span></p></div>
         </address>

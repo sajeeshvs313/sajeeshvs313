@@ -1,6 +1,6 @@
 # Qrenzy Digital Solutions: Website Demos
 
-> 30 ready-made website demos across 15 industries for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com), Thrissur. Websites start at ₹5,000 and go live in about 48 hours. Contact: +91 99057 00600 (WhatsApp).
+> 32 ready-made website demos across 15 industries for local businesses in Kerala, India, built by Qrenzy Digital Solutions (www.qrenzy.com), Thrissur. Websites start at ₹5,000 and go live in about 48 hours. Contact: +91 99057 00600 (WhatsApp).
 
 ## Demos
 
@@ -34,6 +34,8 @@
 - [Corporate & B2B: Apex Business Solutions](https://demo.qrenzy.com/corporate-b2b/): Apex Business Solutions in Kochi: B2B consulting, HR and payroll, business setup and corporate outsourcing for growing companies. Request a proposal today.
 - [Finance & Insurance: SecureWealth Advisors](https://demo.qrenzy.com/finance-insurance/): SecureWealth Advisors in Kochi: life, health and motor insurance, mutual funds, SIPs and loan assistance. Free policy review and personalised financial plan.
 - [Legal & Professional Services: Justicia Law Chambers](https://demo.qrenzy.com/legal/): Justicia Law Chambers in Kochi: property, family, corporate and cheque-bounce legal services by experienced advocates. Book a confidential consultation.
+- [Immigration Consultant (Canada): Maple Path Immigration (sample)](https://demo.qrenzy.com/immigration-canada/): Maple Path Immigration, licensed Canadian immigration consultants (RCIC): Express Entry, study and work permits, family sponsorship and PR. Book a consultation online.
+- [Bookkeeping Services (US): LedgerLane Bookkeeping (sample)](https://demo.qrenzy.com/bookkeeping-us/): LedgerLane Bookkeeping: monthly bookkeeping, catch-up cleanups and reconciliations for US small businesses, contractors and e-commerce sellers. Book a free intro call.
 
 ## Website design guides by industry
 
@@ -67,3 +69,5 @@
 - [Website design for B2B & Corporate Service Providers](https://demo.qrenzy.com/websites-for/b2b-and-corporate-services/): Business buyers research suppliers before they ever call, and they look for clarity on what you do, who you serve and how you work. A B2B company website should explain services plainly, show experience and invite a proposal request.
 - [Website design for Insurance & Finance Advisors](https://demo.qrenzy.com/websites-for/insurance-and-finance-advisors/): People approach an insurance or finance advisor for peace of mind, so trust and clarity come before products. An advisor's website should explain options in plain language, show credentials and make a free review easy to request.
 - [Website design for Law Firms & Advocates](https://demo.qrenzy.com/websites-for/law-firms-and-advocates/): People looking for a lawyer are often anxious and want clarity and discretion. A law firm's website should present practice areas and advocates professionally, offer informational guidance and provide a discreet way to ask for a consultation, within the rules that govern advocates.
+- [Website design for Immigration & Visa Consultants](https://demo.qrenzy.com/websites-for/immigration-consultants/): People searching for immigration help are anxious and comparing several consultants. They want to know three things fast: are you licensed, can you help with my programme and how do I speak to someone. A good immigration website answers all three without promising outcomes nobody can guarantee.
+- [Website design for Bookkeeping & Accounting Firms](https://demo.qrenzy.com/websites-for/bookkeeping-firms/): Business owners hire a bookkeeper when their books have fallen behind or when tax time scares them. They search for a specific kind of help, such as bookkeeping for contractors or catch-up for past months. A bookkeeping website should match those searches, show clear pricing and make a free intro call easy to book.
